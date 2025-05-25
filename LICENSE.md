@@ -1,4 +1,5 @@
-This License Agreement is entered into by The Regents of the University of California, Department of Energy contract-operators of the Lawrence Berkeley National Laboratory, 1 Cyclotron Road, Berkeley, CA 94720 (“Berkeley Lab”), and the entity listed below (“you” or "Licensee")![image](https://github.com/user-attachments/assets/ba3a522a-8a06-4da4-a92c-887e65843974)
+This License Agreement is entered into by The Regents of the University of California, Department of Energy contract-operators of the Lawrence Berkeley National Laboratory, 1 Cyclotron Road, Berkeley, CA 94720 (“Berkeley Lab”), and the entity listed below (“you” or "Licensee")
+
 1. Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 
 (1) Redistributions of source code must retain the copyright notice, this list of conditions and the following disclaimer.
@@ -10,6 +11,3 @@ This License Agreement is entered into by The Regents of the University of Calif
 2. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 3. You are under no obligation whatsoever to provide any bug fixes, patches, or upgrades to the features, functionality or performance of the source code ("Enhancements") to anyone; however, if you choose to make your Enhancements available either publicly, or directly to Lawrence Berkeley National Laboratory, without imposing a separate written license agreement for such Enhancements, then you hereby grant the following license: a non-exclusive, royalty-free perpetual license to install, use, modify, prepare derivative works, incorporate into other computer software, distribute, and sublicense such enhancements or derivative works thereof, in binary and source code form.
-
-![image](https://github.com/user-attachments/assets/60479c58-ddff-4d1c-8bfd-354e371e16fc)
-
