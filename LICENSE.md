@@ -1,5 +1,3 @@
-This License Agreement is entered into by The Regents of the University of California, Department of Energy contract-operators of the Lawrence Berkeley National Laboratory, 1 Cyclotron Road, Berkeley, CA 94720 (“Berkeley Lab”), and the entity listed below (“you” or "Licensee")
-
 1. Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 
 (1) Redistributions of source code must retain the copyright notice, this list of conditions and the following disclaimer.
