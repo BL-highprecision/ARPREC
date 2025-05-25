@@ -1,0 +1,15 @@
+NOTE:  To make any or all three of the quadrature programs, type
+
+make quads
+
+Then to run the Gaussian quadrature test program, run
+
+./quads 1
+
+To run the erf quadrature test program, run
+
+./quads 2
+
+To run the tanh-sinh quadrature test program, run
+
+./quads 3
