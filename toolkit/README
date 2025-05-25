@@ -1,0 +1,203 @@
+Instructions for the Mathematician's Toolkit
+Version date: 2004-07-01
+
+Please first read the "release notes" in the README file of the main
+arprec directory.  Any known difficulties for installation, and possible
+remedies, are noted there.
+
+Send any comments and questions to dhbailey@lbl.gov.
+
+A. Installation instructions:
+
+1. Download and install the ARPREC library (see instructions in README
+of the main arprec directory).  Then type "make toolkit" and enter the
+toolkit directory.
+
+2. Run the mathinit program by typing ./mathinit.  This computes a few
+constants and then generates quadrature data for tanh-sinh
+quadrature. This takes about 2 minutes to run, depending on the
+system, and generates two files, one about 19 Mbyte long.  By default,
+only data for the tanh-sinh quadrature scheme is currently computed.
+To compute data for all three quadrature schemes, see the comments at the
+start of mathinit.f, or below in Section C, Item 13.
+
+3. The mathtool program may now be invoked by typing ./mathtool.
+
+B. Usage instructions:
+
+Here are some examples, as shown in the prompt of the mathtool program: 
+
+e + pi + log2 + log10 + catalan  Adds these pre-defined constants.
+result[1] + result[2]            Adds result #1 to result #2.
+alpha = arctan[3] - 3*log[2]     Defines or sets user variable alpha.
+fun1[x,y] = 2*sqrt[x]*erf[y]     Defines user function fun1.
+clear[nam1]                      Clears definition of variable or function.
+integrate[1/(1+x^2), {x, 0, 1}]  Integrates 1/(1+x^2) from x=0 to 1.
+sum[1/2^k, {k, 0, infinity}]     Sums 1/2^k from k=0 to infinity.
+binomial[20,10]*factorial[10]    Evaluates binomial coeff and factorial.
+zeta[3] + zetaz[1,1,2]           Evaluates zeta and multi-zeta functions.
+table[x^k, {k, 1, 4}]            Forms the list [x^1, x^2, x^3, x^4].
+pslq[table[x^k, {k, 0, n}]]      Finds coeffs of degree-n poly for x.
+polyroot[1,-1,-1,{0.618}]        Finds real root of 1-x-x^2=0 near 0.618.
+polyroot[1,2,3,{-0.33, 0.47}]    Complex root of 1+2x+3x^2 near -0.33+0.47i.
+digits = 200                     Sets working precision to 200 digits.
+epsilon = -190                   Sets epsilon level to 10^(-190).
+eformat[190,180]                 Display using E format with 180 digits.
+fformat[60,50]                   Display using F format with 50 digits.
+input file.dat                   Inputs commands from file file.dat.
+output file.dat                  Outputs user vars and funs to file.dat.
+help polyroot                    Displays a brief explanation of polyroot.
+functions                        Displays a list of all defined functions.
+variables                        Displays a list of all defined variables.
+prompt                           Displays this message.
+exit                             Exits this program.
+
+Expressions are case insensitive and may be continued on next line by
+typing \ at end of line.
+
+C. Additional comments on the usage of the mathtool program:
+
+1. By default, the initial working precision when mathtool is invoked
+is 100 decimal digits.  This can be increased to as high as 1000
+digits by using the "digits" command as shown above.  If even higher
+precision is needed, see the instructions at the start of the
+globdata.f file.  Changing the value of digits does not change the
+number of digits displayed in interactive output -- by default only
+the first 68 digits are displayed.  To display more (or fewer), see
+item 7 below.  By default, epsilon is set to -digits, meaning a
+tolerance of 10^epsilon, but it can be adjusted as shown above.
+
+2. User-defined variable and function names are limited to 16
+characters (alphabetic, digits, underscore), case insensitive.
+
+3. All constants and variables are stored as high-precision numerical
+values, not in a symbolic form as with programs such as Maple or
+Mathematica.  Thus if you increase the value of digits (the working
+precision), you must recalculate all variables that you have defined,
+unless they were originally calculated to at least the specified
+precision.
+
+4. The following mathematical constants are pre-defined: e, log2,
+log10, pi, catalan (Catalan's constant), eulergamma (Euler's constant)
+and infinity.
+
+5. The following mathematical functions are pre-defined: abs, arccos,
+arcsin, arctan, arctan2, bessel, besselexp, binomial, cos, erf, erfc,
+exp, factorial, gamma, integrate, log, max, min, polyroot, pslq, sin,
+sqrt, sum, table, tan, zeta, zetap, zetaz.  Arctan2 is a two-argument
+form of arctan, similar to atan2 in Fortran; bessel[t] is the same as
+BesselI[0,t] in Mathematica; besselexp[t] = bessel[t]/exp[t]; gamma is
+the gamma function; zetap and zetaz are multi-zeta functions -- see
+http://www.cecm.sfu.ca/projects/ezface/definition.html.
+
+6. If you mistype a function definition, you cannot simply retype it
+(a syntax error will result). First remove the function name using the
+"clear" command as shown above.  The function definition for an
+existing function can be displayed by simply typing the function name.
+
+7. For faster execution when computing integrals or sums, pre-define
+any constant expressions that appear in a function definition.  For
+example, rather than defining f[x] = sqrt[2] * exp[x], first define
+sqrt2 = sqrt[2], then define f[x] = sqrt2 * exp[x].
+
+8. The format for displaying subsequent interactive results can be
+changed by using the "eformat" and "fformat" commands, as shown above.
+These are similar to the Fortran E format and F format, respectively:
+the first argument is the total length, and the second argument is the
+number of siginificant digits.  The default format is eformat[78,68].
+When the first argument exceeds 80, output values are continued on
+additional lines as needed.  The second argument may not exceed the
+value of digits (the current working precision).  For example, if one
+types "eformat[15,10]", then "pi", the result is ' 3.1415926535e0'.  If
+one types "fformat[15,10]", then "pi", the result is '   3.1415926535'.
+
+9. Several of the facilities within the mathtool program, notably the
+quadrature and PSLQ facilities, produce some debug output as their
+calculations proceed.  This output can be controlled by setting debug,
+which by default is set to 2.  All such output (including for instance
+the CPU time used in each command) can be canceled by typing "debug =
+0".
+
+10. The "output" command can be used to save variable and function
+definitions, as shown above.  Variables are saved to an accuracy of
+the current working precision, as specified by using the "digits"
+command.  The "efformat" and "fformat" commands do not affect the
+format or accuracy of data written to a file by the "output" command.
+
+11. A facility is available for summing infinite series (or finite
+sums, for that matter), as shown above.  Be advised, however, that the
+summand function is evaluated directly as shown when computing such
+sums.  This is not a problem for summand functions such as
+"(n+3)/16^n", which converge rapidly to zero, but summand functions
+such as "1/(3*n+2)^2" do not converge to zero rapidly enough for the
+infinite series to be evaluated to high accuracy in reasonable time.
+In many cases, such sums can be evaluated Maple or Mathematica, which
+employ advanced transformations.
+
+12. A facility is available for finding roots of polynomials, either
+real roots or complex roots -- see examples above.  The starting value
+should be reasonably close to the desired root if possible.  If you do
+not have any idea where the root(s) may be, try "random" starting
+values. Note especially that for finding a complex root, do NOT
+specify zero as the imaginary part of the starting value, since the
+resulting Newton iterations will then be restricted to the real line,
+and the root will not be found.
+
+13. A powerful integration (numerical quadrature) facility is
+available in the mathtool program.  The integrand function may have a
+blow-up singularity at either or both endpoints of the interval, and
+either or both of the endpoints may be "infinity" or "-infinity".
+However, the function should not have a singularity within the
+interval -- if it does, split the integral into two integrals.  Three
+quadrature schemes are available, namely tanh-sinh, error function and
+Gaussian quadrature, although by default only the data for tanh-sinh
+is pre-computed by the mathinit program.  To enable all three schemes,
+change the parameter "nquadopt" in mathinit.f to 3, then recompile
+mathinit (by typing "make") and re-run.  This requires about 2 hours
+run time on a 2004-era system.  Gaussian quadrature is the fastest of
+the three schemes for continuous, well-behaved integrand functions,
+but does poorly for integrands with singularities.  Error function
+(erf) quadrature works well even if the function has a blow-up
+singularity at one or both of the endpoints of the interval.
+Tanh-sinh is even faster for many functions.  To switch between these
+schemes, type "quadtype = 1" for Gaussian, "quadtype = 2" for erf, and
+"quadtype = 3" for tanh-sinh.  Each of these schemes performs
+calculations with multiple "levels" (sets) of abscissas and weights.
+Each additional level provides additional accuracy, but also
+approximately doubles the run time.  The highest level to be used is
+controlled by the quadlevel command.  By default, 10 levels of
+abscissas and weights are pre-calculated by the mathinit program, so
+quadlevel can be set as high as 10.  The quadrature routines attempt
+to find a value accurate to within a tolerance of 10^epsilon.  Epsilon
+can be adjusted as shown above.  The quadrature routines, particularly
+the erf and tanh-sinh schemes, work best when a function with a
+blow-up singularity at one endpoint is transformed, via a linear
+transformation, to one where the singularity is at zero.  Example:
+the function f[t] = t/sqrt[1-t^2] has a singularity at 1.  So the
+integral of f[t] from 0 to 1 is better changed to the integral of g[u]
+from 0 to 1, where g[u] = (1-u)/sqrt[u*(2-u)], and u = 1-t. 
+
+14. A powerful integer relation detection facility, employing
+Ferguson's PSLQ algorithm, is available in the mathtool program.
+Given n real numbers x_i, an integer relation program finds integers
+a_i, not all zero, such that a_1 x_1 + a_2 x_2 + ... + a_n x_n = 0.
+If the largest integer among the a_i has d digits, then each entry of
+the input real vector (a_i) must be calculated to at least n*d digits
+accuracy, and the algorithm must be performed using at least n*d digit
+accuracy, or else any recovered "relation" will not be numerically
+meaningful.  By default, the standard one-level PSLQ algorithm is
+used, which is adequate for modest-sized problems.  If the run time is
+excessive, a two-level PSLQ program, which performs most PSLQ
+iterations using double precision (updating the multiprecision arrays
+only when necessary), is available by typing "pslqlevel = 2".  A
+three-level PSLQ will be available by typing "pslqlevel = 3", although
+this has not yet been implemented in the mathtool program.  By
+default, PSLQ iterations are abandoned when the norm bound (the
+maximum Euclidean norm of any possible integer relation vector)
+exceeds 10^100.  This termination condition can be changed by typing,
+for example, "pslqbound = 40", which terminates when the PSLQ bound
+exceeds 10^40.  A third relevant parameter is epsilon.  By default,
+epsilon is set to -digits, but it can be manually adjusted.  Typing
+"epsilon = -80", for example, means that PSLQ will return a solution
+vector if its inner product with the input real vector is less than
+10^(-80).
