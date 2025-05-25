@@ -1,0 +1,4254 @@
+commit 3e96a065a93f951f37ce5b37abc34ac29c6a046a
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Jul 24 15:13:28 2008 -0700
+
+    Update NEWS for 2.2.2 release.
+
+commit 9519e3e32dece6a29a809e2c1f900a9dbdccdf1d
+Author: David H Bailey <dhbailey@lbl.gov>
+Date:   Thu Jul 24 14:56:19 2008 -0700
+
+    Update mp_mod.f.
+    
+      - copyright notice updated
+      - added routine "mpeq_xz", an assignment conversion routine from mp_complex
+        to double complex.
+      - added the interface "cmplx", which points to "mp_cmplx", which takes two
+        mp_real arguments and returns a mp_complex result.
+      - In subroutine "mpinpq", replaced some code (which was problematic)
+        with two calls to f_mpeq, and similarly in "mpinpz".
+      - I broke a few long lines, which are syntactically fine but confuse
+        emacs on some system.
+
+commit aa36097eb9d36d19ead6000716baf0c3a250f424
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Jul 24 14:55:12 2008 -0700
+
+    Include <cstring> in mp_inline.h.
+    
+    This is needed for std::strlen and std::memcpy.
+
+commit 15e4d908b87064da9c360b8809aec81b29ab24fb
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Jun 13 00:30:34 2008 -0700
+
+    Improve dble function a bit.
+
+commit 9db67fbd309a5bb6a4be63ca574c7522da3aeacf
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Jan 30 23:05:17 2008 -0800
+
+    Added a stand alone to_string function.
+    
+    This is just a wrapper to mp_real::to_string.
+
+commit d94b473e8db4a84ee4da86b86c154d18f898b015
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Jan 31 21:02:02 2008 -0800
+
+    When printing out in scientific format use at least two digits for exponents.
+    
+    This makes it consistent with double precision and qd library.
+
+commit 14df2c443b4fb0c54abb38caece87540b54847b9
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Jan 29 16:42:29 2008 -0800
+
+    Allows "git" or "date" as patchlevel for makedist.
+
+commit b5da6e926e415dfd8c7aabb07321611199b0f87a
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Jan 30 13:04:59 2008 -0800
+
+    Make string convertion from mp_real conform to standard C++ double output.
+    
+    The exponent field always has a sign, and is two digits
+    wide by default.
+
+commit c5409d2232fe0661f34e2d9065e53b05517adad0
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Jan 29 15:13:46 2008 -0800
+
+    Make sure dble does not spuriously underflow.
+    
+    Previously dble was implemented using mpmdc and ldexp.  When the number
+    were near underflow ldexp underflowed to zero, returning zero even if
+    the number was still representable in double precision.
+
+commit d7861d6fb913add1a1538b473eb042b988639bdf
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Jan 17 13:31:00 2008 -0800
+
+    Need to attach EXEEXT to demo executable names in fortran/Makefile.am.
+    
+    This was causing problems during "make demo" in Cygwin.
+
+commit 1e18719cc1101828f6a10905f0f32bc65e755a82
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Jan 16 16:20:08 2008 -0800
+
+    Need to attach EXEEXT to executable names in toolkit/Makefile.am.
+    
+    This was causing problems in Cygwin environment.
+
+commit 1f47fca05be311dd5fbf7c7e8d493113b2925dc3
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Oct 15 13:47:28 2007 -0700
+
+    Update NEWS a bit.
+
+commit 075470319fc8db62c0f03862db2b560b71ddd1b8
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Oct 15 12:14:18 2007 -0700
+
+    Added pgCC to the list of compilers.
+
+commit 79e02b9d203ca030a711153fcde2a6f7d0225f73
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Oct 15 12:08:30 2007 -0700
+
+    Detect flags necessary for using unescaped backslashes in Fortran.
+    
+    This would be -qnoescape for xlf and -Mbackslash for pgf.
+
+commit 7e698701d45fd18da1b25e2664ad63cfed34562f
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Oct 15 10:54:33 2007 -0700
+
+    Use more specific dsign instead of sign in mp_modm.f.
+    
+    For some reason PGI Fortran compiler does not like sign
+    declared as intrinsic.
+
+commit 49ef8c670847de6ae865d638331d0bdde3f3315a
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Oct 15 10:27:57 2007 -0700
+
+    Use volatile unsigned short for control word declaration in fpu.cpp.
+
+commit 4657626faa7231a49b8e47fbfbba251861bc762f
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Oct 15 10:08:33 2007 -0700
+
+    Update config related files to most recent one (automake 1.10).
+
+commit 65a83c17733cd38f7ce0b22b05878bd660f7ff77
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Oct 9 13:29:54 2007 -0700
+
+    Use g++ and gfortran in config/make-dist.sh.
+
+commit 114d807eb3660bb7a4dc5f45d7fc047efa0c27de
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Oct 9 13:19:05 2007 -0700
+
+    Include README and doc/arprec.pdf in distribution and install them.
+
+commit 2bf652e763f88698044669d05cdcdfcaf71ca539
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Oct 9 13:07:48 2007 -0700
+
+    Use iomanipulator setprecision instead of mpsetoutputprec in mp_test.
+
+commit 08c0e91ebf5d33b21c649a1b246a8e1f503a644f
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Aug 19 01:34:53 2007 -0700
+
+    Toolkit needs to be linked with libarprec_f_main.a.
+
+commit 97980fdf94e97641d14ccf71f07f4501ea9fbbeb
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Aug 18 19:35:20 2007 -0700
+
+    Free up malloc'ed space for mpuu1/2/3 during mp_finalize.
+
+commit 1641fbd84bacd2216e14a96a4b446b32e652b140
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Aug 18 05:31:41 2007 -0700
+
+    Explicitly return return bool status for mp_real::write.
+
+commit c1051885ac743fe2765da436b2f565b055069764
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Aug 18 05:30:21 2007 -0700
+
+    Cast string length to int type where appropriate.
+
+commit 35fd1b4f0b7374971c5278874bc892b2bb685670
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Aug 18 05:26:16 2007 -0700
+
+    Declare more functions as ARPREC_API.
+
+commit 57671a094915b5aea14cba1850b8ab49ac89fd02
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Aug 18 04:33:15 2007 -0700
+
+    Need to include <limits> for std::numeric_limits.
+
+commit 47950cd2acdfee78f52801e71f1e29d507020e77
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Aug 18 04:27:50 2007 -0700
+
+    Workaround for MSVC++ compiler for declaring static class variables.
+    
+    For some reason MSVC++ 2005 does not like more than one static variable
+    declared in one statement.  Split them up.
+
+commit 518b69cb84a9766320fdc175c4cf7eb0e32ea033
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue May 29 23:21:11 2007 -0700
+
+    Added mp::_d_nan for double precision NaN.
+
+commit ae90ecca296c299a975d97b8595dd58d1a8f6c20
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Apr 28 10:59:15 2007 -0700
+
+    Check for QD library include directory if necessary.
+    
+    Use qd-config to check for recent version (2.3) of QD library
+    and its include directory.
+
+commit 5939b253c38323ca0c1c558fba895391a45aeaaf
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Apr 26 18:49:49 2007 -0700
+
+    Include "make install" in installation instructions in INSTALL file.
+
+commit 1290c42820113c764a6a491c399189257504906f
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu May 31 00:47:38 2007 -0700
+
+    Moved debugging routines to src/debug.cpp.
+
+commit 7497cfb6a6d7fc948a49e2cb04c992fa7b1abd79
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu May 31 00:11:14 2007 -0700
+
+    mp_real::print_short should be declared const.
+
+commit 69db1914922da73021a82239e25f122939dd3ad8
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Apr 28 09:40:29 2007 -0700
+
+    Added constructor taking dd_real and qd_real is ARPREC_QD is defined.
+
+commit 81acd2844dd7ff522579977a757a3afdb239df8f
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 24 17:04:55 2007 -0700
+
+    to_dd_real and to_qd_real should accept const mp_real &.
+
+commit 1113406734f0375dd425bf88d1495085e46ecf59
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 24 15:28:32 2007 -0700
+
+    Update README.
+
+commit 39a9cb70a8b672bbea1565fb4f5ee3575afa5f72
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 24 15:17:52 2007 -0700
+
+    Moved f_mp.cpp to fortran directory.
+
+commit 59efbeb168ed28f5e7e50c7f543bb56d7fe4da78
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 24 14:50:33 2007 -0700
+
+    Renamed cpp to tests directory.
+
+commit 41a20dbc4392f1c896095e7b2ac8c65208801153
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 24 14:46:46 2007 -0700
+
+    Moved f_test to cpp directory.
+
+commit 92b2665b3d9f43eb3648555a360d27e3699b4b8c
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 24 14:12:16 2007 -0700
+
+    Put Fortran main into libarprec_f_main instead of libarprecmod.a.
+    
+    This allows C/C++ programs to call Fortran routines using ARPREC.
+
+commit 5af7ddcb99b45e65ba7588e8c9f061958fdb3987
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 24 12:34:28 2007 -0700
+
+    Bump minor version number to 2.
+
+commit e15c44a9883e473a129920a047be6b8c469546de
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 24 12:29:38 2007 -0700
+
+    Updated NEWS for 2.2.0 release.
+
+commit 19fea3b5a800a14db38a8b7fc5599c0b28f5edbf
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Apr 21 03:29:04 2007 -0700
+
+    Update conversion to dd_real/qd_real.
+
+commit cc9f9b16405c290aea5fa33490fbe7ba7ecfa7da
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Apr 13 20:52:05 2007 -0700
+
+    Renamed mp::mpnw to mp::prec_words.
+
+commit 1657dbe7b6bc86048266f69790c35c2aaf118064
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Apr 13 19:53:38 2007 -0700
+
+    Update TODO.
+
+commit fd58453fc108270462027dfa6a8ca24b7aa5c360
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Apr 13 18:45:08 2007 -0700
+
+    Rename MPIRD to round_dir, provide symbolic names through enum rounding_mode.
+
+commit a28e64f8f6dba4d8da43d89cb9d27d167ed95095
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Apr 13 18:32:27 2007 -0700
+
+    Removed unused constant mp::MPMCR.
+
+commit 1b2cc6ffe33fab409cd535fcbf053b272c05f234
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Apr 13 18:25:59 2007 -0700
+
+    Renamed MPIER to error_no.
+
+commit 3b38bd7800e006a4d4bf1c2135a0b43d6c672967
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Apr 13 18:20:26 2007 -0700
+
+    Renamed mp::MPNDB to mp::debug_words.
+
+commit ea6f03c4b66c1a58dd54d0fd119ebc9260ac63a4
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Apr 13 18:05:05 2007 -0700
+
+    Rename mp::MPIDB to mp::debug_level.
+    
+    Part of on-going cleanup, giving more descriptive names.
+
+commit e7c80b250b7b4ab5d9eb74c451ec3f9e8701cb51
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Apr 13 17:47:24 2007 -0700
+
+    Clean up reading/writing _pi, _log2, _log10 constants.
+    
+    Added mp_read_constants and mp_write_constants.
+
+commit 790875ab8c994175c2295e17eda3641f65914524
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Apr 13 12:34:43 2007 -0700
+
+    Use mp_real::_pi, _log2, and log10 instead of old constant names.
+    
+    Update demo programs to use mp_real::_pi, mp_real::_log2, and
+    mp_real::_log10 instead of mp::mppic, mp::mpl02, and mp::mpl10.
+
+commit f94bc9657ef7b7e8a869dabf960fd1d74526ad75
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Apr 12 21:42:05 2007 -0700
+
+    Moved various functions in mp_complex_inline.h to src/complex.cpp.
+    
+    These are not performance critical enough or short enough to be inlined.
+
+commit c6070a792e63d7e511da033ea34c718586f2cbb5
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Apr 12 21:33:19 2007 -0700
+
+    Move various inlined functions in mp_inline.h to src/mp_real.cpp.
+    
+    These are not performance critical or short enough to be inlined
+    (sin, cos, etc.).
+
+commit f6c767497ed70f3127da56fecb94689b45b656b5
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Apr 12 21:04:43 2007 -0700
+
+    Add extra argument to mp_init indicate whether to compute constants.
+    
+    This was removed earlier, but is now back in for compatibility
+    for Fortran code.
+
+commit 18446557b2cf069caa1a8befba8a40661757d249
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Apr 12 17:59:34 2007 -0700
+
+    Clean up mp_inline.h a bit.
+    
+    No need to use local variable for mp::mpnw.
+
+commit 9bda85f50d2ef292a3238bbb7142a76ff3b3c135
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Apr 12 16:55:46 2007 -0700
+
+    Added digits_per_word constant in class mp.
+
+commit 6efb4a8ce0ea1d6918a9d8e914604c06510260ee
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Apr 12 16:06:10 2007 -0700
+
+    Moved mp::mpeps to mp_real::_eps, cleaned up init_mpeps (now init_eps).
+
+commit 3790dcdc05d5665753d33a1f7336e9b30c423f12
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Apr 12 15:54:55 2007 -0700
+
+    Clean up constant initializations (_pi, _log2, _log10) in mp_init.
+    
+    Statically initalize to zero-element array, and then use
+    mp_real::reallocate to expand to appropriate size when mp_init is called.
+
+commit a699b9a9380da29330a0362e970cfcab514ac564
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Apr 12 04:38:59 2007 -0700
+
+    Moved constants pi, log2, and log10 to mp_real.
+    
+    These were formerly named mppic, mpl02, and mpl10.
+
+commit 7193957e7f5f49be11f8287270f743894c8f024b
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Apr 12 04:09:38 2007 -0700
+
+    Remove nearly unused constants mp2 and mp21.
+
+commit 98855298d4d5382e9a0ed55f72439ef54f94df37
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Apr 12 04:05:50 2007 -0700
+
+    Simplify init function.
+
+commit 72415ead50fd07ab43cf7fcae6ea0c14bba04a11
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Apr 12 03:58:07 2007 -0700
+
+    Renamed mpipl, mpwds, mp5, and mpoud to more sensible names.
+
+commit 598074ff547e58ca77fd65ed78835abf4eadbc84
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Apr 12 03:27:12 2007 -0700
+
+    Convert C-style cast to static_cast or const_cast where appropriate.
+
+commit 2932bf77881f43e98f4029fac6cc870bb7f03f14
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Apr 12 02:41:21 2007 -0700
+
+    Remove exponent from mp_real(double, int, int) constructor.
+    
+    mp_real(a, e, n) used to initialize mp_real to "a x (2^48)^e",
+    with n words allocated.  Remove exponent to simplify,
+    as all current uses just sets exponent to zero.  If non-zero
+    exponent is needed, one can always call mpdmc.
+
+commit e7328dadc86c0396283e851af80e920cfd03e9c4
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Apr 12 02:18:13 2007 -0700
+
+    Make mp_real(double *) constructors explicit.
+
+commit 05b32f3956f52e99b80ed916e1dee0291c3cd124
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Apr 12 02:17:57 2007 -0700
+
+    Fix bug in c_mp.cpp where double arrays where not converted to mp_reals.
+
+commit 7a9bf569e6edcd38b519dc8f84678da0decbb86d
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Apr 12 02:12:18 2007 -0700
+
+    Do not set first two words as uninitialized in mp_real::allocate.
+
+commit f0ef992032f7b3982d75ac694fe93cf31c1923d1
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Apr 12 01:57:16 2007 -0700
+
+    Move mp_complex array function defs from mp_complex.h to src/array.cpp.
+
+commit 17618e7660cb0070d6c9e31e200723c7adfbab1a
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Apr 12 01:53:27 2007 -0700
+
+    Cosmetic cleanup in mp_complex.h.
+
+commit d918e5613d6d657adefcb892b0e92d2af0f39522
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Apr 12 01:49:55 2007 -0700
+
+    Removed getData / setData.  Just use mp_real.mpr directly.
+
+commit 695e7ad799bf15c672b8b0e214cf087c93ad8055
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Apr 12 01:47:08 2007 -0700
+
+    Move mp_real array function defs from mp_real.h to src/array.cpp.
+
+commit 1bd62e8c9a0ea03209f00798875e4236cb506d9c
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Apr 12 01:43:19 2007 -0700
+
+    Moved various mp_real constructor defs out of mp_real.h.
+    
+    Some are moved as inlined functions in mp_inline.h, others
+    are now in src/mp_real.cpp.
+
+commit 05af15a9e697bf1a67c1e1d740f9f9af98361450
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Apr 12 01:04:45 2007 -0700
+
+    Make --disable-inline work.
+    
+    Some inline routines moved to mp_inline.h.  Added small_inline.cpp,
+    which implements inline functions declared in small_inline.h.
+
+commit e1a059b838b79e68c26e79e8f90ede4579b77a8a
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Apr 11 22:10:26 2007 -0700
+
+    Remove special mp_real(int) nad mp_complex(int) constructors.
+    
+    These constructors were rather unintuitive and dangerous since it
+    used to allocate n (or 2*n) words of storage instead of initalizing
+    the mp_real/mp_complex to the given value n.
+    
+    Instead use mp_real(double, int, int) constructor to explicitly
+    specify how many words needs to be allocated.
+
+commit 0b3b4010e6ba66b5ebd5ce8abe50257b30031a5a
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Apr 11 23:01:09 2007 -0700
+
+    Added test for trigonometric functions.
+
+commit 1671e19e9d379ded98fa73397df8474e46d9ca44
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Apr 11 21:50:16 2007 -0700
+
+    Removed mpr_location accessor from mp_real.
+    
+    Now that the data structure has only public members, there is
+    no need for an accessor.
+
+commit 089336f713ff07e1d8382ddd592a4472d7272fec
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Apr 11 21:07:45 2007 -0700
+
+    Print out number of digits we are timing in mp_timer.
+
+commit 11e608cb20a2d57f7e64bcc88f78c716e9ec8834
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Apr 11 20:41:25 2007 -0700
+
+    Run constant number of iteration in mp_timer.
+    
+    Differing number will compute different results, and cannot
+    be compared directly.
+
+commit 66835d0e0a01e76b23c4669fbc87365c803ef8b2
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Apr 11 11:57:32 2007 -0700
+
+    Clean up the output of mp_timer a bit.
+    
+    It now prints out timing information in much more
+    succinct manner.
+
+commit 7efac5a4a664f29251a20fbf9969a9ae82d58245
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Apr 4 01:18:54 2007 -0700
+
+    Clean up include/arprec/mp_int_inline.h and mp_complex_inline.h a bit.
+
+commit ed8cdde3e8bf2baad23a322d8ce5813aaa7d4065
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Apr 4 01:14:57 2007 -0700
+
+    Moved inlined mp_int operator/ to src/int_div.cpp.
+
+commit 037f18936818684e05ecb0ab63c57d63ddb964c7
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Apr 4 01:12:38 2007 -0700
+
+    Moved inlined mp_int function divrem to src/divrem.cpp.
+
+commit 142839ed7b8acefc94e8b21e42389bc3a2fafa7b
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Apr 4 01:07:47 2007 -0700
+
+    Moved inlined mp_int operator++ and operator-- functions to src/inc.cpp.
+
+commit 6b6dc4bdf5caaaa86bc86432215a197a66bd04cd
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Apr 4 01:04:15 2007 -0700
+
+    Moved inlined fmod function to src/fmod.cpp.
+
+commit 2a4ac9e0764d5503ebf3f8f6e361b0facda3abc3
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Apr 4 01:00:52 2007 -0700
+
+    Moved inline function operator= to src/assign.cpp.
+
+commit 9f16984eaf9f22a0f01c8368d7e0f478db163465
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Apr 4 00:56:02 2007 -0700
+
+    Now that all members are public, remove friend declarations.
+
+commit 7a2c914da92dd1698bad85cf10ffea82b7f56a0f
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Apr 4 00:35:25 2007 -0700
+
+    Make everything public.
+    
+    The makes the mp_real and others a POD (plain old data), easily
+    manipulated by other routines.
+
+commit 7dd360aefcde71e306f45dcd4c6dd2a7e81307b3
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Apr 4 00:31:10 2007 -0700
+
+    QD library now has qd_real.h instead of qd.h.
+    
+    This has been the case since the 2.2.x release of the QD library.
+
+commit 9f19241b4b7a9d8cd9049f05ec5d12cf8b109771
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Apr 4 00:28:31 2007 -0700
+
+    Removed superfluous inline attribute from class function declarations.
+
+commit a07f98b7c61a594ae3088efd5595366717212936
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Apr 2 19:59:58 2007 -0700
+
+    Update toolkit/.gitignore to ignore const.dat and quadts.dat.
+
+commit 93e66682e88ca83b62071c776b5a8bf0b41af489
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Mar 21 20:06:51 2007 -0700
+
+    Make write and to_string take one fmtflags instead of float_field and adjust_field.
+
+commit 776c31b8328f9c16a5692a6d3ba0b5e713e0a2ca
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Apr 11 23:10:08 2007 -0700
+
+    Fix bug in c_mpout_z.
+    
+    c_mpout_z was initializing an mp_real with "2" instead of "q".
+
+commit bc41dee5e0f2b3aa7366efb4182a1f73e13be5b2
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 10 18:13:47 2007 -0700
+
+    Update NEWS for 2.1.104.
+
+commit 3fc21d36f6d85f20fece83190c93446075daecea
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 10 19:29:01 2007 -0700
+
+    Cosmetic change to remove compiler warning.
+    
+    Compiler warns about precedence of || vs. &&.  Get rid of
+    warning by putting parenthesis where appropriate.
+
+commit b691195c75ba79d1140f06fcf083756d92e0a173
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 10 18:06:02 2007 -0700
+
+    Make c_mp.cpp use std::malloc and std::free.
+
+commit 5208ffd843245268eea4fa27baa6835e69fcff0c
+Author: Brian Gladman <brg@gladman.plus.com>
+Date:   Thu Mar 29 11:32:49 2007 -0700
+
+    Fix off-by-one index in mp_int::operator++.
+
+commit d55cac4335af06dd60fb4b19b4239b2aa5f69ddc
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Mar 29 11:32:17 2007 -0700
+
+    In mp_int::operator/ we can't have input = output in call to mpinfr.
+    
+    Bug reported by Brian Gladman.
+
+commit 10e135d29cce6e6176521e54d9cdfe3209ac1a39
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Mar 24 00:23:52 2007 -0700
+
+    Make MinGW system look for same compilers as in cygwin.
+
+commit 0c172f379af3d036d06c55d46737720a46a84647
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Mar 24 00:09:59 2007 -0700
+
+    Prune out some obsolete C++ compilers from search list.
+    
+    These include old icc/ecc compilers (modern Intel uses icpc
+    as their C++ compiler), and several compilers on Apple platforms.
+
+commit 5b596df70ccb26ff8c686d5c61f7e47a0bb7ac8e
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Mar 23 23:50:06 2007 -0700
+
+    Remove cl from C++ compiler search list.
+    
+    As far as I know cl refers to the MSVC++ cl.exe compiler,
+    and I don't think autoconf/automake stuff works with command-line
+    Microsoft compilers.
+
+commit ffe5b527bcdae64a49068cfa75fe2f41736329e2
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Mar 21 00:14:43 2007 -0700
+
+    Output correct number of digits in c_mpwrite.
+
+commit f121985583645833012cf736032717f81058a0d4
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Mar 21 00:04:13 2007 -0700
+
+    Use cp -pr instad of cp -a in config/makedist.sh.
+    
+    BSD cp does not know about -a flag.
+
+commit ea5b8aeca659cee317c4b5bc2272d855a439b463
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Mar 20 23:32:26 2007 -0700
+
+    Output correct number of digits in c_mpout.
+    
+    It was ignoring outputprec setting.
+
+commit 8821a037225185bff582e725252d46508cbd8955
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Mar 21 04:20:25 2007 -0800
+
+    Remove ARPREC_API declaration from IO template code.
+
+commit 7c6b98fcb4d693a69578b770b124c1ae119b7dac
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Mar 21 04:19:42 2007 -0800
+
+    Undef min/max macros in pslq1_templates.cpp, if they are defined.
+    
+    Some C++ compilers define these as C macros, causing havoc
+    when defining an overloaded min function or just calling
+    std::min.
+
+commit 915cd92d104567e0a0b7035992e30d9bc74724f4
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Mar 11 17:13:34 2007 -0700
+
+    Remove RCC from list of compilers on Apple systems.
+    
+    Due to case insensitive file systems it gets confused with rcc,
+    the QT resource compiler.
+
+commit a18294fcb8c04dbf623bfe84d2d759713d094b07
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 21 19:07:11 2007 -0800
+
+    Fix arprec-config --fcflags.
+
+commit 86c44e12b1a78d0bea5ba8f37fdac4d0de717dff
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 21 16:53:48 2007 -0800
+
+    Clean up mp_real constructors.
+    
+    They should use allocate function whenever possible.
+
+commit 668ee1420de5825a05468ea0a88c8768c63afa12
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 21 16:27:03 2007 -0800
+
+    Change mp::SIGN to ::sign.
+
+commit 1bb7d6d0f0361cc88b298cf74f21b32e13c55269
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 21 16:17:17 2007 -0800
+
+    Update TODO.
+
+commit 52c6496e2b318fe27b3fd22d462f4ddd846c16f4
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 21 15:44:17 2007 -0800
+
+    Include <algorithm> in mp.h for std::min and std::max.
+
+commit 99996f8bc88d613f86d64e3e83613acee8322cdd
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 21 15:25:54 2007 -0800
+
+    Do not use MIN, MAX, and ABS macros in demo routines.
+    
+    These are no longer defined in arprec headers.
+
+commit d389fc71ae931a5d65b4beabb5dfe8580a39f5b7
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 21 15:24:54 2007 -0800
+
+    Include <cstdlib> in mp.h for abs(int).
+
+commit 66bb942e11d78d5021b308db088c4a4830bb4804
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 21 15:08:14 2007 -0800
+
+    Use int instead of size_t.
+
+commit f812ec96ab210c099abee949393d3f80c6c93d33
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 21 14:39:23 2007 -0800
+
+    Use std::abs instead of ABS macro.
+
+commit 2b8e62378221e3e2e7b7175c37a8fbc8980edf02
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 21 14:29:59 2007 -0800
+
+    Use std::min and std::max instead of defining our own MIN/MAX macros.
+
+commit 206e5e69247ff9dd74ee33aac6ddd461658cfda2
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Feb 17 02:25:13 2007 -0800
+
+    Added mp_real::alloc and mp_real::realloc.
+    
+    Simplifies mp_real(int) constructors.
+
+commit ed47485577144cac541c42d4a470f0ac7fbe858b
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Feb 16 22:21:08 2007 -0800
+
+    Update NEWS for 2.1.102 release.
+
+commit 227a7e1269d2371314ed6a0b95f21a833eb624e0
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Feb 16 21:13:03 2007 -0800
+
+    Fix indexing bug in mp_real::mpnorm.
+    
+    The renormalization was accessing past the end of the array
+    in certain cases.
+
+commit 94cade14f6a57466e4f99189c96f25271a8ca2b0
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Feb 16 18:27:10 2007 -0800
+
+    Use ARPREC_VALGRIND instead of HAVE_VALGRIND_MEMCHECK_H.
+    
+    Since this is used by the header file include/arprec/mp_real.h, we
+    need more unique name.
+
+commit e474bd33eafef56e46c01ebe720b4946e47a265f
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Feb 16 18:18:25 2007 -0800
+
+    Dummy macro VALGRIND_MAKE_MEM_UNDEFINED needs two arguments.
+    
+    When valgrind is not available, VALGRIND_MAKE_MEM_UNDEFINED is defined
+    to nothing, but it needs two arguments.
+
+commit 06e5893b83dd79df635f683347682e954876ab75
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Feb 16 18:16:07 2007 -0800
+
+    mp_real.h needs to include arprec_config.h.
+    
+    The header file mp_real.h needs ARPREC_DEBUG symbol,
+    which is defined in arprec/arprec_config.h.
+
+commit e6bb673d65f02bef200da51328b43e311ad614e0
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Feb 9 23:10:04 2007 -0800
+
+    Fix dependency of Fortran modules to allow parallel make.
+
+commit 8a5e6c12c062778fb1e08ec7fe998274855fa100
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Feb 8 15:00:51 2007 -0800
+
+    Remove using std::stack statement from a template code.
+    
+    Since template code is included in a header file, we do not want to
+    pollute the global namespace.  Instead explicitly mention std::stack.
+
+commit 754cf7e3a8a250b5df5a712ae2a46ce0da402d31
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Feb 8 14:58:03 2007 -0800
+
+    Use C++ I/O mechanisms in pslq demo programs.
+    
+    Also output relations in integer format (by setting precision to zero).
+
+commit 825468a62add07d1f6bf9235ef552aedf61a9527
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Feb 5 02:14:04 2007 -0800
+
+    Added support for fixed, scientific, and custom output.
+    
+    Custom output refers to something like "10 ^ 54 x -1.34123412".
+    Removed direct output to char array.  Removed unused io.cpp.
+
+commit 380367137adff25a565841504a10fab900633cbc
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Feb 4 23:14:29 2007 -0800
+
+    Print PSLQ relation in integer format up to 2^53.
+    
+    If the magnitude of the coefficient of the relation is smaller
+    than double precision limit (2^53), print it out in integer format.
+    Otherwise print out in floating point format.
+    
+    To be fixed to always print in integer format.
+
+commit 952b52227ef2ec1dc11dd31ed97a99114f86cc5e
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Feb 3 01:16:36 2007 -0800
+
+    Use valgrind to set memory to undefined when newly created.
+    
+    Check for valgrind/memcheck.h during configure, and use it
+    if --debug is also specified.
+
+commit ec9a278463e5626db58dd3beac7e005093075794
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Feb 3 00:43:15 2007 -0800
+
+    Fix mp_real::print_short to not access zero-length mantissas.
+    
+    Also use static_cast instead of C-style casts.
+
+commit 2405535e63a664f03993efbeccbb575e1f7b7750
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Feb 2 03:04:16 2007 -0800
+
+    Update NEWS for 2.1.102.
+
+commit c34a29879c081016dafb01f2388d0667a7615456
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Feb 2 02:48:23 2007 -0800
+
+    Reorder compiler search order for Apple systems.
+    
+    Since their HFS+ filesystem is case insensitive, it sometimes
+    confuses between cc and CC.
+    
+    [Bug reported by Jacques Vernin.]
+
+commit 0d3c9c4e173d9f1c02e110e272269898a331a2a8
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Nov 4 01:05:22 2006 -0800
+
+    Updated NEWS for 2.1.101 release.
+
+commit 520235c0c22d3642d68eca83f7a6c7a70d61326c
+Author: David H Bailey <dhbailey@lbl.gov>
+Date:   Sat Nov 4 01:01:18 2006 -0800
+
+    Do not alter display precision mpoud in quadsub.f.
+
+commit 28ceca088c3ee3e0404882d2e894397654cba84a
+Author: David H Bailey <dhbailey@lbl.gov>
+Date:   Sat Nov 4 00:59:17 2006 -0800
+
+    Added third display format for math toolkit.
+    
+    The third format switches between F and E format depending
+    on the magnitude of the number being displayed.
+
+commit b3ff3280f9482d1a9849dfb7bfa534177727ab86
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Nov 1 18:46:43 2006 -0800
+
+    Updated NEWS.
+
+commit e1c448c40e951124f424955238da298866624de8
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Nov 1 18:25:35 2006 -0800
+
+    Added fortran/Makefile.sample.
+    
+    This is a sample Makefile that can be used to compile Fortran
+    programs using arprec.  It uses the arprec-config script installed
+    during 'make install' to figure out what flags and libraries to use.
+    
+    Updated README accordingly.
+
+commit 59f985c30c3ba109f5a559acd443075cd56398bf
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Nov 1 18:21:39 2006 -0800
+
+    Removed extra '@' from MODINC in arprec-config.in.
+
+commit 351bcae60f9d443e7311b79d3506f1b0963f7759
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Sep 23 02:03:21 2006 -0700
+
+    Require autoconf version 2.60.
+    
+    This is needed to AC_DEFINE macros with arguments.
+
+commit e9716d2cd21d2393917ca352b9a1425c064774ce
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Sep 11 06:40:03 2006 -0700
+
+    Use basic_istream and basic_ostream instead of istream / ostream.
+
+commit 5a0baa31cf853a1ff73eacaddadb45cea57a7615
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Sep 10 23:09:48 2006 -0700
+
+    Use unsigned int for digit_per_step in construct.cpp.
+
+commit 04d6c5a1a6f5bc3f4b1106ae600438b9ffb6b6a5
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Sep 10 23:09:14 2006 -0700
+
+    Convert tab to spaces in construct.cpp.
+
+commit 7be89c03bdcbc2ac650f547f738baf3bc3b1a3c9
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Sep 9 05:18:12 2006 -0700
+
+    Cast size_t from strlen into int in (deprecated) outc.cpp.
+
+commit a3c963ced56c09141c7a302c6bc135a1abdd6f16
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Sep 9 05:09:23 2006 -0700
+
+    Use new mp_real::read function to initialize mp_real from C string.
+
+commit 6eb2f0edb148d8c9a3584adb7c0bd88e76485b78
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Sep 9 04:25:22 2006 -0700
+
+    Updated cpp/io test mp_real::read instead of << operator.
+
+commit 8bcc3591c579b931c6f67de9d352ec8ba15d25f9
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Sep 9 04:19:05 2006 -0700
+
+    Clear eof bit in istream during read if eof is reached.
+    
+    Since mp_real::read peeks at the next character triggering eof,
+    reset the eof bit at the end.
+
+commit 4f4c8bc7ba44e4f2e0d11e6809b8ff81f12590f3
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Sep 9 04:17:45 2006 -0700
+
+    Add mp_real constructor accepting std::string.
+
+commit a75c9c4b206f4caa0bc2bba6c01ca1f4e2ab8192
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Sep 9 02:46:02 2006 -0700
+
+    Added mp_real::read from std::string.
+
+commit 047095ed207bdee8e9e6808b9039d061e20a5c53
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Sep 9 02:33:30 2006 -0700
+
+    Added changelog target to top-level Makefile.am.
+    
+    This just creates ChangeLog from git repo.
+
+commit 93f1b17af274824f9c0ce45615b4a131d937a44f
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Sep 9 02:27:58 2006 -0700
+
+    Use size_t when dealing with strlen in (deprecated) outc.cpp.
+
+commit 3aeff4115b7dded2e3da14831a758a1baafbb794
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Sep 9 02:27:35 2006 -0700
+
+    Use string::size_type when dealing with string length.
+    
+    Also use unsigned int where appropriate.
+
+commit c760ddee0215e774640fb7764dbdcfdc3f2e6ef8
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Sep 9 02:11:02 2006 -0700
+
+    Define _CRT_SECURE_NO_DEPRECATE in deprecated out, outc, and outx.
+    
+    This disables MSVC++ warning about insecure C routines.
+
+commit b0fb1d7bbd5bd3bda2eed7912ec2dd23cbe4275f
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Sep 9 02:01:23 2006 -0700
+
+    Added deprecation comments to mpout, mpoutc, and mpoutx.
+    
+    Functionality of these routines are being replaced by
+    mp_real::to_string and mp_real::write.
+
+commit 1d4f46b8469fe0469f847e06b8a152e832a38e54
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Sep 9 00:33:25 2006 -0700
+
+    Return true boolean value in to_double in construct.cpp.
+
+commit 8cc17de51bf75a44a2a15ae47c24f6482038f7a2
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Sep 8 23:29:32 2006 -0700
+
+    Make mp_real::read/write return bool instead of a stream.
+    
+    It really didn't make sense to return the stream since it
+    is just passed into them.  Now returns boolean to indicate
+    whether the write/read was sucessful.
+
+commit e99caeaaaa0015148b20b39af4e0a4b1cadbb831
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Sep 8 22:34:04 2006 -0700
+
+    Use short-circuit || operator instead of | for boolean OR in read.cpp.
+
+commit 786477f3a449b7c6c6d70fb049a3db681c0bd348
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Sep 8 15:37:08 2006 -0700
+
+    Remove excess newlines in cpp/c_mp_test.c.
+
+commit b4cb6739deb027e26a7e3080d2c518914756111c
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Sep 8 15:22:20 2006 -0700
+
+    Renamed c_mpswrite to c_mp_to_str which uses the new mp_real::write.
+
+commit b9f4e67c1de912aaae574547ebcf560a546da434
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Sep 7 06:28:21 2006 -0700
+
+    Added mp_real::write for writing to C string.
+
+commit 82d6a94ec22a631b88f3ea731a57b7363836437e
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Sep 5 16:32:49 2006 -0700
+
+    Added more comments for mp_real::read/write.
+
+commit ae90599fe8013931d0d45d146863a2444be438f7
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Sep 5 15:41:35 2006 -0700
+
+    More comprehensive test for mp_real::read.
+
+commit c1d3f22964d0c7e3e201fbb2152b3f4fe26d148e
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Sep 5 15:19:46 2006 -0700
+
+    Make mp_real::read eat ending comma or semicolon.
+
+commit c0432b5191f00b74e9588a0d9e39b32659c61079
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Sep 5 05:51:32 2006 -0700
+
+    Added simple test for mp_real::read and mp_real::to_string.
+
+commit 9c1c8ff5ed74f95f0a9ff518042f07f34a88c175
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Sep 5 05:50:48 2006 -0700
+
+    Flip the sign if minus sign is detected in mp_real::construct.
+
+commit 10fdd4c2d373723112d0d0eaf526485beaffe7da
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Sep 5 04:25:30 2006 -0700
+
+    Output mp::mpoud digits by default in mp_real::to_string.
+
+commit 46e00ce626ceda6f5c9f71c468a2e69a946896d1
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Sep 5 03:33:12 2006 -0700
+
+    Split off mp_real::write into src/write.cpp.
+
+commit fbf7304be811aed3798085062f5b3c5d517bb8d8
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Sep 5 03:26:30 2006 -0700
+
+    Output mp::mpoud digits by default in mp_real::write.
+
+commit 7b687fa86f815079d6f9acb75bb02df6df12978e
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Sep 5 03:21:16 2006 -0700
+
+    Added n_cols parameter to mp_real::write.
+    
+    If n_cols is set to positive value, newlines are inserted
+    in the output of mp_real so that the output is limited to
+    n_cols columns.
+
+commit 50a5ff0a8bbfc5534697c0a2ada583a1da8b9de1
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Sep 4 21:28:50 2006 -0700
+
+    Now operator<< uses the new mp_real::read routine.
+
+commit eb3617fd79fb89bb33770fb1f29e09f52fe3b568
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Sep 4 21:22:50 2006 -0700
+
+    Added mp_real::read and construct for mp_real input.
+    
+    These are improved version of inpc, using C++ I/O facilities.
+
+commit 68b2412f2a79dcafd2c00dcaec5d04ef3ad78a97
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Sep 3 04:27:28 2006 -0700
+
+    Print decimal point and minus sign correctly.
+
+commit c194cef715ddad7a0e3366fcba13661cff47275b
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Sep 3 04:05:36 2006 -0700
+
+    Added expn_width parameter to mp_real::write and to_string.
+    
+    This controls the width of the exponent field.
+
+commit f7517826d7e1e8c54b277758bc306c894e48283f
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Sep 3 03:11:44 2006 -0700
+
+    Updated TODO.
+
+commit acbf26f8fd6f9ed98fc1b17c1412309e300cf4f1
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Sep 3 02:43:37 2006 -0700
+
+    Added mp_real::to_string method.
+    
+    Uses mp_real::write method.
+
+commit ddab6c6e924c9d6c57cc29d0bbdd8f101fb912d5
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Sep 3 02:34:04 2006 -0700
+
+    Added mp_real::write for more flexible writing to ostream.
+    
+    Uses the new to_digit function.  operator<< updated to use
+    this new write routine.
+
+commit 5592f94aaf5085940e2f3ae601684eb7f875adcc
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Sep 3 02:19:39 2006 -0700
+
+    Added const qualifier to mp_real::to_digits.
+
+commit f1268b6892c0b11415768ff48fb4a466312a2b29
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Sep 3 01:18:08 2006 -0700
+
+    Make to_digits return the length instead of in parameter.
+    
+    Updated appropriate tests in cpp/io.cpp.
+
+commit 7da19d7c477ebc0383f697081ab3a61e9dda7655
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Sep 3 01:14:05 2006 -0700
+
+    Updated comments and copyright notice of src/to_digits.cpp.
+
+commit d77066ee2e2da383e2b6abab4f83fcf974cfd0d1
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Sep 3 00:26:01 2006 -0700
+
+    Added verbosity and precision option to cpp/io.
+
+commit aac67b4a1a3eb834e556bff9afb9cf2fe10cd9c2
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Sep 2 23:50:10 2006 -0700
+
+    Added testing of to_digits in cpp/io.cpp.
+
+commit 852d535d6639fed29eae883e6e3e6aa6e3af0ec8
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Sep 3 00:51:51 2006 -0700
+
+    Added mp_real::to_digits as for improved mp_real to string conversion.
+
+commit 515aa40752099aa7f1b16f5abae88ce6d6aac721
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Sep 2 06:40:13 2006 -0700
+
+    Merge read_binary and write_binary into single file binary_io.cpp.
+
+commit e043a5b478d3cef773f0a2cab32f16f06a7c138a
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Sep 2 06:32:57 2006 -0700
+
+    Add new test for C++ binary io.
+
+commit 7a793cbeb2193040d596a320ea488d16881a2b03
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Sep 2 06:21:34 2006 -0700
+
+    Fix memory size errors in write_binary and read_binary.
+
+commit f55a9a314f96cbca89d33d3542d7877babfc6991
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Sep 2 05:33:39 2006 -0700
+
+    Cleaned up mp_real::read_binary.
+    
+    Use static_ and reinterpret_cast instead of unions.
+
+commit 83df6a0c9cf82ba347d6a23cd5f0adc2c7eabbd1
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Sep 2 04:47:11 2006 -0700
+
+    Renamed {read,write}_mp_real to _binary and make them member functions.
+
+commit d9cea8b8abb99a43ed81d0780b5f65894a83b600
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Sep 2 04:03:54 2006 -0700
+
+    Cleaned up mp_real::write_mp_real.
+    
+    Use static_ and reinterpret_cast instead of unions.
+
+commit 8fd3fd623ca9eaca762ade80692f53a30f930e26
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Sep 2 04:22:47 2006 -0700
+
+    Use angle brackets for including arprec/*.h files.
+
+commit 39f870eb9b18e6bec7c4b52784112ec75f9b9099
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Aug 29 02:06:57 2006 -0700
+
+    Make --enable-fma configure option smarter.
+    
+    It now accepts options: yes, no, auto, c99, gnu, ibm.
+    C99 uses fma() function, gnu uses gcc's builtin __builtin_fma,
+    and ibm uses IBM VisualAge's __fmadd.  Auto tries to detect
+    an appropriate one on Power platforms.  Whatever is chosen,
+    a small sanity check is done to make sure it rounds correctly.
+    
+    It also uses fused multiply-subtract macro ARPREC_FMS (defined
+    appropriately by the configure script).
+
+commit 920f0b29ba3369b50658b4d36f7922231ec07256
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Aug 28 17:58:38 2006 -0700
+
+    Renamed acx_ m4 macros to ax_ m4 macros to be consistent.
+
+commit b7971b3e17264055d5823a3ea838f4afa280b455
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Aug 28 18:57:38 2006 -0700
+
+    Don't pass -mp to CONFIG_FCFLAGS for IBM compiler.
+
+commit 76fc9a9c9d72cc955c6dd56d38d07c748d587ba6
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Aug 28 13:18:54 2006 -0700
+
+    Updated sample C++ program in README to actually compile.
+    
+    Updated include to arprec/mp_real.h, use appropriate std::
+    namespace where necessary.
+
+commit d8ccc41e088aa79869ea9c0310a39cb1ddd2059d
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Aug 24 05:48:09 2006 -0700
+
+    Use C++ include headers instead of C include headers.
+
+commit 464702e692c95e4d0bd94f33e6d66ac1f49260ce
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Aug 24 04:12:09 2006 -0700
+
+    Use std::abs instead of fabs.
+
+commit 2642959cfe48e17852f7ccccd77f0cbf070f7f71
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Aug 24 03:47:25 2006 -0700
+
+    Don't use "using namespace std" in demo programs.
+    
+    Instead specify specific use statements.
+
+commit a9b218f5dbd0949dbe3dbd6d8979f978fb0b3b71
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Aug 24 03:01:24 2006 -0700
+
+    Include <cassert> where needed.
+
+commit fe995bed726ec48298935166506d74a9cddf7531
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Jul 19 05:00:44 2006 -0700
+
+    Minor cleanup in include/arprec/mp_real.h.
+
+commit 5c27a4ca3f815b74465c095155eaca8383df30df
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Jul 19 04:57:28 2006 -0700
+
+    Minor cleanup of include/arprec/mp.h.
+
+commit f3cd0fb8bdecbecac626ee8783ed0bd84ccfca98
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Jul 19 04:41:21 2006 -0700
+
+    Use cerr for errors and endl for newlines.
+
+commit 208d1f87713d10f35cba33be96fe4b339811d266
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Jul 19 03:38:37 2006 -0700
+
+    Add optional ostream parameter to print_mpreal.
+    
+    This defaults to std::cerr.
+
+commit 7c65341264b7b65d2a6db3366c65275dead33815
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Jul 19 02:48:05 2006 -0700
+
+    Removed forward declaration of ArprecIntegrate class.
+
+commit 6dcdd0b1faeacd3ae6d7fdf705b8ad3901ea39af
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Jul 19 02:40:15 2006 -0700
+
+    Remove forward declaration of class Integrate.
+
+commit d24e0447d32ccc87e137089da0e821cca3c3c61c
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Jul 19 02:34:22 2006 -0700
+
+    Renamed ArprecIntegrate to arprec-integrate, etc.
+
+commit 8cead2eee8221a860b1cae3704b71b30bcd9704a
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Jul 18 05:44:51 2006 -0700
+
+    Rename QuadErf to quad-erf, etc.
+
+commit 8d4fd02e1e1218c413bc8c497e3c19918dc27dd7
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Jul 18 05:32:11 2006 -0700
+
+    Removed Integrate.cpp.
+
+commit 473865b33fa79ad604fbfc9e459c3ac9b96b5a99
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Jul 18 05:26:43 2006 -0700
+
+    Updated TODO.
+
+commit 09320441375a9185cfb6162a2f46a99e4fe08235
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Jul 18 04:57:00 2006 -0700
+
+    Zero out the last word in mpeq if available.
+    
+    This make sure that any trailing words (used for rounding)
+    are set to zero.
+
+commit 91b94947def34193ec30f195b683e5920c988b26
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Jul 18 04:55:55 2006 -0700
+
+    New mp_real now have 0 as initial value.
+    
+    It used to have undefined values since mpr[1] was
+    set to mpnw without initializing the mantissa.
+
+commit 429da60a2e13453a4dad5aed5f13a334bc0d132f
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Jul 18 05:20:12 2006 -0700
+
+    Added mp_real::print_short for debugging.
+    
+    This prints out the number of allocated words and mantissa words,
+    exponent, and the first word of the mantissa.
+
+commit db77b85fa4ba2fe138b9b7a15748d63753367d4d
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Jul 17 04:34:59 2006 -0700
+
+    Update erfc not to use c_mp* routines.
+    
+    Instead use the corresponding C++ routines.
+    (cherry picked from 366ae60321014acab3be4981db32fb63b8c9e948 commit)
+
+commit e8dbc9208b86a1a9e774c1b4b3774e8a06a8a269
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Jul 17 01:26:52 2006 -0700
+
+    Removed extraneous include directives.
+
+commit ecfd1fbc8a8ba03def4ef8bbaed3af45ef63a442
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Jul 17 00:40:46 2006 -0700
+
+    Removed mputil.h and util.cpp from library sources.
+    
+    This was only used in the demo program quads.
+
+commit 1bba258b88d190b2e102f7ecc9bd04cfbde24f2d
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Jul 17 00:29:21 2006 -0700
+
+    Added appropriate using statements in cpp/mp_test.cpp.
+
+commit b1434e6959123a09eb78b143ec0c9c56f150334a
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Jul 17 00:23:14 2006 -0700
+
+    Use mp_real::mpmdc instead of c_mpmdc in src/util.cpp.
+
+commit 9861d308bd0ba6567d3af244c73ff3f7b4b0c4ec
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Jul 17 00:19:53 2006 -0700
+
+    Use const reference for parameter of dplog10q.
+
+commit 6692a672b6044b249cf9d3be1cf3a57d65813e36
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Jul 17 00:17:20 2006 -0700
+
+    Don't include c_mp.h unless necessary.
+
+commit 47093e67e228432e508b5f33c55ed16d86e709fd
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Jul 17 00:14:12 2006 -0700
+
+    Avoid using statements in public include files.
+
+commit fd54e381b6e0db6ed29a504ef33fb5ad604801ea
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Jul 16 23:40:48 2006 -0700
+
+    Use library archive directly instead of using -L<dir> -l<lib>.
+    
+    This way if automake keeps track of library depencencies.
+
+commit 61782631de6772637df3102c69a7d97d8fb13785
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Jul 16 21:17:11 2006 -0700
+
+    Renamed timer to tictoc.
+
+commit dd5d4439ee38f831739997a7c17d047b2e080ca9
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Jul 16 20:44:44 2006 -0700
+
+    Removed duplicate definitions in src/angx.cpp and src/npwx.cpp.
+
+commit 6c2f75b589991949b89575eecdde5f27b3408b8d
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Jul 16 20:32:48 2006 -0700
+
+    Clean up src/Makefile.am.
+
+commit 0e337f1887fb1b805bffd8eb06df904233238c9e
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Jul 16 04:32:05 2006 -0700
+
+    Update TODO: lastest code compiles just fine with IBM xlf/xlC compilers.
+
+commit 0e8de33ddcdd4d9052e3050677981e09bff4f1d6
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Jul 16 04:12:23 2006 -0700
+
+    Renamed src/mp* files.
+
+commit 59a75bff9511d878e92efa7a63aeaa7b8cae936a
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Jul 16 04:01:10 2006 -0700
+
+    Use src/init.cpp for AC_CONFIG_SRCDIR.
+    
+    It used to use arprec.cpp, which no longer exists.
+
+commit 4919d06a0e96e56c0d8f4095bd543d169672c5b5
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Jul 16 04:00:31 2006 -0700
+
+    Split src/mpreal_friends.cpp into smaller files.
+
+commit 7d9d6c08208ff6f3b5a801f3f93ab3467ef8ce02
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Jul 16 03:54:02 2006 -0700
+
+    Renamed arprec.cpp to init.cpp.
+
+commit 0f0610b338e1fffd9602fa797665f195b90bdf60
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jul 15 22:59:20 2006 -0700
+
+    Renamed mprealx3.cpp to nrtx.cpp, after the only routine it contains.
+
+commit 9494cafadaf8a3ee39e982e2cde391ae2dba397e
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jul 15 22:56:16 2006 -0700
+
+    Split src/mprealx2.cpp.
+
+commit 368305b331a94bfc55987e3ed63941825d435474
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jul 15 22:50:04 2006 -0700
+
+    Split mprealx.cpp.
+
+commit ec17fd5527cdc1119b09768eeba5a8aff0e863e5
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jul 15 22:39:46 2006 -0700
+
+    Split large mpreal[234].cpp files into smaller bits.
+
+commit 05e1e270fef3f125e5dc5a740395de98b7c24e40
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jul 15 22:06:26 2006 -0700
+
+    Split huge src/mpreal.cpp into many files.
+
+commit c005bf18fe4394182426024073c7be4cc5735559
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Jul 16 03:36:48 2006 -0700
+
+    Change "a += C; a -= C" into "a = (a + C) - C" to work around ia64 icc bug.
+    
+    icc-9.0.030 optimizer seems to have a bug where it miscompiles
+    
+      a += C;
+      a -= C;
+    
+    Instead using
+    
+      a = (a + C) - C;
+    
+    seems to work.
+
+commit cc156febeb73af091fca8c6c8cef8767f43401f8
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jul 15 22:43:09 2006 -0700
+
+    Fix type mismatch in mp_real.h.
+    
+    The loop (in DEBUG ifdef block) compared size_t to int,
+    just use size_t as loop index type.
+
+commit 67c17b562567d7c7f3b430b646af4d28d49e53e3
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jul 15 02:12:56 2006 -0700
+
+    Don't echo commands when emitting a message from Makefile.
+
+commit 38aa7ed17db61c20a74f81d8320cda444dbcc8c2
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jul 15 01:17:19 2006 -0700
+
+    Use datarootdir instead of datadir in arprec-config.in.
+
+commit 2d92dbd8b255da63ee66ee5dcf9dc76c0bc24efb
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jul 15 01:13:36 2006 -0700
+
+    Emit error message when making f95 programs without f95 compiler.
+
+commit 189b1941308464ffdf68b53158d600b1b6daf9fe
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jul 15 01:06:10 2006 -0700
+
+    Added cpp-demo to .PHONY.
+
+commit aa7df8ac164a104b9c3c669a74ff3e7516205812
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jul 15 00:45:36 2006 -0700
+
+    Re-order fortran compiler list to bring more common compilers to the front.
+
+commit 660d75c7488c0a15d99b05734f567eb720901bbf
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Jul 14 23:16:05 2006 -0700
+
+    Added pathscale compilers (pathCC, pathf95) to compiler list.
+
+commit 83933c64b39b493c715c414f1aeb8755a087ce02
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Jul 13 14:12:37 2006 -0700
+
+    Removed cygwin stuff in TODO.
+    
+    The package seems to fully compile under cygwin now.
+
+commit 041e7b1ad276d13eb66cb6ccff8f1a875a36feb5
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Jul 13 07:29:55 2006 -0700
+
+    Don't put merges in ChangeLog.
+
+commit 636206a1f08ea85a19a508d592afb48e240ada90
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Jul 13 05:57:04 2006 -0700
+
+    Use GetTickCount() for timer in Windows.
+    
+    MSVC++ does not have gettimeofday so use Win32 API GetTickCount
+    to get subsecond accuracy (~10ms resolution).
+    (cherry picked from 53654f005bf1c861fdad1d5cc2186bcde2ff2de3 commit)
+
+commit abb501a3cb52081ffb6f0b9177376e849b2703d8
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Jul 13 07:15:58 2006 -0700
+
+    Added f_test to fortran/.gitignore.
+
+commit 6380a74d2f1d3d0fab9d50c63918b6c742609101
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Jul 13 00:53:38 2006 -0700
+
+    Use host instead of target in configure.ac.
+
+commit 9a235286f7a9ef07d174d3f61ad5bd2fcecc033d
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Jul 12 21:33:25 2006 -0700
+
+    Convert size_t value from strlen into unsigned int.
+
+commit 8b8c144962c2bdf8678ae3a8934898688e0c60be
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Jul 12 01:59:16 2006 -0700
+
+    Added .gitingore in cpp fortran toolkit directories.
+    
+    Also handles *.exe files for cygwin systems.
+
+commit ee19da731d9a1e68091cc4721a58f5524fdddf3d
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Jul 12 01:50:26 2006 -0700
+
+    Update .gitignore to include EXTRA_PROGRAMS and autom4te.cache.
+
+commit 74d49b59d46ee4e56ec1f77e3ec1900606032de6
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Jul 12 01:31:53 2006 -0700
+
+    Use default compiler search order for cygwin.
+    
+    Windows often has a case-insensitive file system, so it
+    often gets confused between cc and CC.
+
+commit ff4bb1cd21699d44f820ba7fa736e6fe6a585580
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Jul 12 21:10:18 2006 -0700
+
+    Fix cygwin demo compilation problem.
+    
+    Handle executable extension EXEEXT in Makefile.am correctly.
+    This builds all of EXTRA_PROGRAMS in cpp directory; perhaps
+    we need to more explicitly handle EXEEXT.
+
+commit 0fd8ac20aa3bef6e2d2e90eaf62ab6af37e3d1eb
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Jun 21 06:38:41 2006 -0700
+
+    Use variable k instead of l to avoid confusion in mp_real::mpdexc.
+
+commit 40b57bede4a6ce1de7f29d63f5cb1d0a28f6f70b
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Jun 21 06:26:53 2006 -0700
+
+    No need to use strcpy when initializing mp_real from char *.
+
+commit 32aff57afc07ba8fb0ffb4b3370d61601534066d
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Jun 21 05:38:13 2006 -0700
+
+    Added .gitignore file.
+
+commit ea6702729f085cd96c87a5b2e6a9f3e908c8727e
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Jun 21 03:12:02 2006 -0700
+
+    Update config/autogen.sh and config/makedist.sh to use git instead of gnu-arch (tla).
+
+commit fc5ff5059daf10a11b97f441922aaf0f8ae5517f
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Jun 18 04:02:50 2006 -0700
+
+    Removed arch related files.
+
+commit 67a31c66d3ef9fbcd0fc24092ebd251064e1cc11
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Jun 11 05:58:23 2006 +0000
+
+    Use -qstrict -qnoescape for xlf on Apple.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-96
+
+commit 7f96dcfc13ebc5f9a15ca7377cfb25f39a153d21
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Jun 11 04:21:17 2006 +0000
+
+    Removed extra space when using ax_f90_modflag in toolkit/Makefile.am.
+    
+    toolkit/Makefile.am: Removed extra space when using ax_f90_modflag
+      since some compiler does not allow any spaces after module include
+      flag.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-95
+
+commit 44af99eb4e377b93e2bf3301aa80fe08ea34acaa
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jun 10 23:46:48 2006 +0000
+
+    Added virtual destructor to abstract class in cpp/Integrate.h.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--cleanup--2.1--patch-16
+
+commit cdbd1b524485954406798add3a2f065b53b9134a
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jun 10 23:33:18 2006 +0000
+
+    Get rid of compiler warnings in fortran demo programs.
+    
+    * Get rid of gfortran warnings in fortran demo programs.
+      Mostly unused variables and labels, and possibly
+      uninitialized variables.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--cleanup--2.1--patch-15
+
+commit 4b1922ba70c3c844bdbeda7391fa1eb7494e3d4f
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jun 10 22:53:58 2006 +0000
+
+    Get rid of compiler warnings in f_test.f and mp_mod.f.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--cleanup--2.1--patch-14
+
+commit fef629044f3ab79e0cbaeb30bc43c4706aa8d214
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jun 10 22:52:13 2006 +0000
+
+    Commented out mpexp_zz in mp_mod.f since this is not implemented yet.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--cleanup--2.1--patch-13
+
+commit cc0737d7c20c238c6749a0b61a1c956ee0b2af7e
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jun 10 22:29:48 2006 +0000
+
+    Added arprec/double_inline.h to contain compatibility double precision routines.
+    
+    * Added arprec/double_inline.h, which provides double precision
+      versions of nint, aint, anint, sqr, and sincosh.  Provided for
+      compatibility.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--cleanup--2.1--patch-12
+
+commit 46d64bb6b8844ef61c3aa1f9376bd55ec231b3dc
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Jun 6 22:54:26 2006 +0000
+
+    Added support for uppercase module filenames.
+    
+    * Added m4/ax_f90_module_style.m4 to detect the module file
+      name styles.  It detects upper/lower case, and the extension.
+    * Appropriate changes in configure.ac, fortran/Makefile.am.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-94
+
+commit e5875be392775d71106062ad3d4fa57d56fd79a8
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Jun 6 22:47:04 2006 +0000
+
+    Added ax_f90_module_flag.m4 to test module include command option.
+    
+    * Use ax_f90_module_flag.m4 instead of adhoc method in configure.ac to
+      figure out what command-line option to use to include module files.
+    * Appropriate changes in configure.ac, arprec-config.in, toolkit/Makefile.am.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-93
+
+commit 2065862002ee5cb49cb348762b868464d3fb2301
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Jun 6 21:50:44 2006 +0000
+
+    Updated various config/ files to autmake-1.9.6.
+    
+    * Should detect newer architectures (like opteron).
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-92
+
+commit eec134b377bb0f3f106d59542ab575dddb6c2441
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Jun 6 20:45:33 2006 +0000
+
+    Added bunch of C++ demo header files into distribution.
+    
+    * cpp/Makefile.am: added bunch of C++ demo header files as noinst_HEADER
+        so they get included in the distribution but not installed.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-91
+
+commit 7db70938243b7493b566a69d9f0aa9f34f93157c
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Jun 2 19:08:51 2006 +0000
+
+    Updated TODO.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-90
+
+commit edf9373af78729e96545d9332e4e141430697997
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Jun 2 19:03:23 2006 +0000
+
+    Fixed pow ambiguity in pslq3.cpp and mpslq3.cpp.
+    
+    * pslq3.cpp, mpslq3.cpp: Fixed ambiguous call to pow,
+        replaced to a call to ldexp.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-89
+
+commit 32120711d8b662b66c59c6fb965de4b148a14e0f
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Jun 2 18:31:20 2006 +0000
+
+    Rename power function to pow.
+    
+    * Renamed power function to pow to remain consistent with
+      standard pow function in math library.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-88
+
+commit bdd8c57153e46ef51554f3b94e0b6006154ae127
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed May 31 09:51:35 2006 +0000
+
+    Updated README and INSTALL files.
+    
+    * README: updated info about apple compilers (IBM, ABsoft).
+    * INSTALL: bring up to date some directory information.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-87
+
+commit a6142e31632246b37b02e60a73dda60dc67bd38f
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed May 31 09:48:25 2006 +0000
+
+    Added extra high precision version of exp routine (mp_modx.f).
+    
+    * Addition of an extra-high-precision exp routine in mp_modx.f
+      (fortran directory).
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-86
+
+commit bfedb2d76b634b5a3919e9944420296eea8ccb83
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed May 31 09:45:52 2006 +0000
+
+    Fixed erf routine.
+    
+    * Sherry Li's change to the erf routine in mpreal_friend.cpp (src
+      directory), and a corresponding change to mp_mod.f (fortran directory).
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-85
+
+commit bbcf38a0677e8cc94d827a811f9ef198a7f96bb0
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed May 31 09:40:23 2006 +0000
+
+    Make mpdigin in mp_mod.f handle negative sign.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-84
+
+commit 456863ca00ca64694558e2370dcb0ee130445a94
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed May 31 09:23:04 2006 +0000
+
+    Declare mpeq_str as private in mp_mod.f.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-83
+
+commit 4e3602c60bfd811356c8d2ef13c5c0263e2d5de5
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue May 30 01:20:19 2006 +0000
+
+    Use AM_FFLAGS instead of AM_FCFLAGS in toolkit/Makefile.am.
+    
+    * toolkit/Makefile.am Use AM_FFLAGS (instead of AM_FCFLAGS).  Automake currently uses
+      *_FFLAGS for compiling .f files (even f90 ones).
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-82
+
+commit 77b8f3ba311092559caa4fe23c1b79a322fb0b00
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri May 26 23:08:36 2006 +0000
+
+    Declare module routines mpeq, mpmul, etc as private in mp_mod.f.
+    
+    * fortran/mp_mod.f: declare module routines mpadd, mpsub, mpmul, mpdiv,
+        mpeq as private to avoid conflicts between routines in mpint module
+        and mpreal module.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-81
+
+commit 652c1baf24f4a125bb411a336023861cd745c63e
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri May 26 20:19:18 2006 +0000
+
+    Use UNIX line endings to arprec.tex.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-80
+
+commit 04100f49fd0e4a6d46f6de0103498060f7c5789e
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu May 25 10:01:38 2006 +0000
+
+    No need to AC_SUBST FC variable explicitly in configure.ac.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-79
+
+commit 77547441f6cdead88a050e3856b8e58a413164c0
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu May 25 09:57:00 2006 +0000
+
+    Rename .f90 files to .f.
+    
+    * Renamed all fortran file with suffix .f (instead of .f90).
+    * No need to call AC_FC_SRCEXT anymore in configure.ac.
+    * Export F77 and FFLAGS in configure.ac (set to FC and FCFLAGS).
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-78
+
+commit 093c963e105694d14ad455e5383689f3834594a8
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu May 25 09:24:13 2006 +0000
+
+    Reverted patch 68 (variable precision real module).
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-77
+
+commit 09f57250db88eb534bda30c5478111d821085f07
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu May 25 09:16:09 2006 +0000
+
+    Add AC_FC_SRCEXT(f90) to configure.ac.
+    
+    * Use AC_FC_SRCEXT(f90) to detect any flags needed to
+      compile files with .f90 extension.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-76
+
+commit 0ecfe31e37a91a1c10d72be43f9244f2a24d2a09
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu May 25 05:54:34 2006 +0000
+
+    [merge] Merged patch 98 (fix variable scoping in matrix.h) from 2.0 tree.
+    
+    Patches applied:
+    
+     * yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-98
+       Added correct scope to inherited variables (in cpp/matrix.h).
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-74
+
+commit 03010849bff96f26f05cad73c493011cbc63057c
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu May 25 05:52:07 2006 +0000
+
+    [merge] Merged patch 97 from 2.0 tree (etime fix).
+    
+    Patches applied:
+    
+     * yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-97
+       Change parameter to etime to array of reals.
+    
+    Fixes to configure.ac was not necessary.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-73
+
+commit 110944c917787c57874981281eb2e8d81d2ba89f
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu May 25 05:35:29 2006 +0000
+
+    Added correct scope to inherited variables (in cpp/matrix.h).
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-98
+
+commit 51d820ee82a8738d5df3a71bc0ec43fc166b8648
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue May 23 08:29:34 2006 +0000
+
+    Change parameter to etime to array of reals.
+    
+    * configure.ac, f90/second.f.in, toolkit/second.f.in: changed
+      the parameter of etime function to array of reals (length 2).
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-97
+
+commit 891e010425f61bebb9fb1a90f5583cb5591b0e86
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue May 23 07:48:45 2006 +0000
+
+    Added -I in front of ARPREC_INC variable in toolkit/Makefile.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-96
+
+commit cd66eaf8586c75bd381eed0649882d29d6ac73df
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue May 23 07:43:47 2006 +0000
+
+    Added g95 fortran compiler in configure.ac.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-95
+
+commit 29b430a65029544b54fbd1f4d958cdfb49fee41c
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Jan 17 21:22:44 2006 +0000
+
+    Move include/arprec/mp_small_inline.h to src/small_inline.h.
+    
+    * Since mp_small_inline.h only includes auxiliary small routines
+      only used the the .cpp source, move it to src directory.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--cleanup--2.1--patch-10
+
+commit faae298a31423a20ee35335f6da6818f3c881c8c
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Jan 17 20:39:22 2006 +0000
+
+    Moved mp_real::mproun, mpnorm, mpeq, mpsub into mpreal.cpp (from mp_inline.h).
+    
+    * src/mpreal.cpp, include/arprec/mp_inline.h:  Moved large inlined functions
+      mproun, mpnorm, mpeq, and mpsub (of mp_real class) into mpreal.cpp.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--cleanup--2.1--patch-9
+
+commit 2bdd94305ed2a84623b7cc9e3f241cff6ad43a52
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Jan 17 20:14:13 2006 +0000
+
+    Added time target to Makefiles.
+    
+    * Makefile.am, cpp/Makefile.am: added time target that builds
+      cpp/mp_timer and runs it.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--cleanup--2.1--patch-8
+
+commit 9a6102d852644e71490416c6d820dd6eac4db96d
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Jan 17 19:52:29 2006 +0000
+
+    Change smallest iteration count in cpp/mp_timer.cpp to 128.
+    
+    * Smallest number of iteration in timing tests lowered to 128 (from 1024).
+      This makes timing of sin/log/sqrt faster.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--cleanup--2.1--patch-7
+
+commit 0075666d9115b06609cd9e023d348c3cf786f771
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Jan 17 19:49:43 2006 +0000
+
+    Fix cpp/mp_timer.cpp help message.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--cleanup--2.1--patch-6
+
+commit 66d916fb83109a85c6900f5c510c9732be76adb8
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Jan 17 19:47:16 2006 +0000
+
+    Removed unused variable form cpp/mp_timer.cpp.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--cleanup--2.1--patch-5
+
+commit 715d7a12ff6d76fa08027f2fac36f354059ccf3c
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Jan 17 19:43:28 2006 +0000
+
+    Make print_mpreal accept const char* instead of char*.
+    
+    * src/arprec.cpp: print_mpreal should accept const char*, so that
+      constant strings needs not be cast into char *.
+    
+    * Remove casting of const char* into char* when print_mpreal is called.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--cleanup--2.1--patch-4
+
+commit 0c110a6ba17d410178613ae80501413a77f58da1
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Jan 17 19:25:59 2006 +0000
+
+    Indentation fix for src/arprec.cpp.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--cleanup--2.1--patch-3
+
+commit 12c6a6628dc757569e4273959dd36e171469b948
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Jan 17 19:23:44 2006 +0000
+
+    Cosmetic clean up of error messages in src/arprec.cpp.
+    
+    * Print newlines after the messages.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--cleanup--2.1--patch-2
+
+commit 5ea9cb364983c323f148600c6a29bbefcc98299a
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Jan 17 17:33:52 2006 +0000
+
+    Added #ifdef __cplusplus around extern declaration in fpu.h.
+    
+    * include/mp/fpu.h: Added the extern "C" declarations needs to be
+      inside #ifdef __cplusplus.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-94
+
+commit 4532f247d3fdeaa28752ec9d3b69e9cb2f29089c
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Jan 6 22:52:30 2006 +0000
+
+    arprec-config should not output extraneous flags.
+    
+    * arprec-config --fcflags and --cxxflags should not output unnecessary
+      flags (e.g.,  free form, optimization flags).
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-70
+
+commit 578ec480a1eb94135de6e3543c5f3fe36d5d997c
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Jan 6 20:16:49 2006 +0000
+
+    Removed commercial use clause from various files.
+    
+    * We are using a modified BSD license, so removed the incompatible
+      "commercial use requires license agreement" bit in various sources.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-93
+
+commit 96150a0e7dece1bec34524ad00a26508a0a779b3
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Dec 10 08:15:50 2005 +0000
+
+    Added mp_modv.f90, the variable precision real module.
+    
+    * Added mp_modv.f90, some changes to Makefile.am to accomodate this.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-68
+
+commit 1c86a2e1f4f348334bb16f89809d88b93d744170
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Dec 10 07:57:07 2005 +0000
+
+    Compile globdata first in toolkit.
+    
+    * compile globdata first in toolkit (by listing globdata.f90) first.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-67
+
+commit eead7dabdc8c266fdc384a49992e7e8f556a9d55
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Dec 10 07:51:53 2005 +0000
+
+    Updated README.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-66
+
+commit 34ab8b382f946a7149a1406dc4a7707f13c69fe2
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Dec 10 07:20:10 2005 +0000
+
+    Use C++ to link c_mp_test.
+    
+    * Since arprec library requires C++ libraries, use C++ to link C
+      programs that uses arprec.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-65
+
+commit 366ceb6c265290d841ed028e1ff8637b799766eb
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Dec 4 01:46:08 2005 +0000
+
+    Fix warnings in mpreal_friends.cpp.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-92
+
+commit 220a90c434111d885614c3c0d280c0d801e7403e
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Dec 4 01:24:44 2005 +0000
+
+    Fixed bug in gamma function.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-91
+
+commit 3a49aa9c7a52d3279f618394d05de60bbc7c4834
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Sep 20 07:29:36 2005 +0000
+
+    Clean up junk, unrecognized, and backup files in makedist.sh.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-90
+
+commit 583c3cc84230f12a03ae407717db99b914f29332
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Jun 20 21:49:27 2005 +0000
+
+    Added cpp/mp_timer.cpp.
+    
+    * cpp/mp_timer.cpp: Added.  Measures the performance of
+        mp_real arthmetic.
+    * cpp/Makefile.am: Added mp_timer as a target.
+    * cpp/.arch-inventory: Classify mp_timer as precious.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-58
+
+commit f14a1ae9908394b2178925e35ac2c410f580c6d7
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon May 2 08:12:15 2005 +0000
+
+    Declare sign as intrinsic in fortran/mp_modm.f90.
+    
+    For some reason gfortran requires sign to be declared as intrinsic.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-57
+
+commit 8e6744642d195a6a299466833a65ec5f43bc01af
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon May 2 07:58:03 2005 +0000
+
+    Fix ambiguity of pow calls, replace some with ldexp calls.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-56
+
+commit b4f62630780f0dfcaaeab3bd1d3ac308fb829487
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon May 2 07:44:56 2005 +0000
+
+    Add stub conversion to qd_real.
+    
+    * include/arprec/mp_real.h: Add convertion to qd_real: to_qd_real.
+    * src/mpreal4.cpp: Add stub for conversion to qd_real.  Currently not
+        implemented yet.
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-55
+
+commit 8ee912acfe320ec501121d12205a174c7b494786
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon May 2 07:28:43 2005 +0000
+
+    Fix ambiguity of pow calls, replace some with ldexp calls.
+    
+    * src/mpreal.cpp: Fix overloaded ambiguity of pow calls, replace some
+        pow calls with ldexp calls.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-54
+
+commit f2708c46a70dcc7b388c001d823f7f033a03d5e2
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon May 2 03:52:12 2005 +0000
+
+    Make toplevel demo target conditional on HAVE_FORTRAN.
+    
+    Makefile.am: Make fortran demo only if HAVE_FORTRAN is set.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-53
+
+commit 88276cc19db47adafb296b9665049d84a7958e23
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon May 2 02:49:54 2005 +0000
+
+    Add/update .arch-inventory files.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-52
+
+commit 16e2c40cc12a2483e5b07354e5ebac939e93d31c
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon May 2 01:51:39 2005 +0000
+
+    Add C++ demo to toplevel Makefile.am.
+    
+    * Makefile.am: Add cpp-demo target to build C++ demo.
+    * cpp/Makefile.am: Add demo programs to clean list.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-51
+
+commit 464947dbe5681a8ce7b1e7a0b09e0da9c29b3a60
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon May 2 01:34:35 2005 +0000
+
+    Add toplevel demo / toolkit targets.
+    
+    * Makefile.am: Add toplevel fortran-demo, demo, and toolkit targets.
+    * fortran/Makefile.am: Add extra programs to the clean list.
+    * toolkit/Makefile.am: Use space instead of tabs where necessary.
+        Add toolkit programs to the clean list.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-50
+
+commit 40bfcb2bcc47eea53a0f6614c8b22d0293e30cbb
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon May 2 00:58:56 2005 +0000
+
+    Clean up fortran/*.mod files during "make clean".
+    
+    * fortran/Makefile.am: add *.mod files to CLEANFILES so they
+        are cleaned up during "make clean".
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-49
+
+commit 876a11851c5acecd1fae78e3fe637593743802c1
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon May 2 00:41:23 2005 +0000
+
+    Clean up config/makedist.sh.
+    
+    * config/makedist.sh:
+      - General cleanup
+      - Use automake provided "make dist".
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-48
+
+commit 250f2c43f4617267dfc21f8d9df754ab7b64912f
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon May 2 00:15:36 2005 +0000
+
+    Clean up arprec-config.in.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-47
+
+commit a215ad185f522a58e33acdd3660e9d40c4ed2a88
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun May 1 23:59:12 2005 +0000
+
+    Add arprec-config.in script.
+    
+    * arprec-config.in:
+        Generates arprec-config script during configure time,
+        which will be installed during "make install".  Enables
+        detection of include / library directories, as well as
+        any special flags required.
+    * Makefile.am: install arprec-config during "make install".
+    * configure.ac: substitute configure args into arprec-config.in.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-46
+
+commit 19d7b76886b1348a481ad50780f2ea7f0577be59
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun May 1 22:56:52 2005 +0000
+
+    Added m4/acx_cxx_fc_lib.m4.
+    
+    * Added m4/acx_cxx_fc_lib.m4, a autoconf macro to determine
+      any extra libraries needed to link C++ with Fortran.
+      Added to accomodate the need to add -lompstubs on Sun/CC
+      system.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-45
+
+commit f72d904a3ff4b68ed9285373d1cf12295fce0c7d
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun May 1 22:45:25 2005 +0000
+
+    Add ACLOCAL_AMFLAGS to toplevel Makefile.am.
+    
+    * Makefile.am: Added ACLOCAL_AMFLAGS, so that the m4 directory
+        is included when aclocal is called automatically.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-44
+
+commit d522f3d270b2d22ee612fc6d8268736f22f9e338
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun May 1 22:41:43 2005 +0000
+
+    Add support for x86-64 architectures.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-43
+
+commit 4e187e123f4da3ce8e7b1cbe1a76a4f9927a3765
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun May 1 22:31:28 2005 +0000
+
+    Clean up configure.ac.
+    
+    * Added m4 directory to hold custom m4 macros.
+    * Added m4/acx_fc_etime.m4 for etime check.
+    * Reorganize host/fc case statement in configure.ac.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-42
+
+commit bd977a92cb52a1a38ffad5db873c9b9272aa59c6
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Apr 29 18:27:46 2005 +0000
+
+    Add AC_PROG_CC to configure.ac.
+    
+    * Added AC_PROG_CC check to configure.ac.
+    * This was causing configure to fail, since it uses the
+      C compiler to check things.  By default use the C++ compiler
+      as the C compiler.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-41
+
+commit 830001978749d44d3c952b465f2d5ba2b4d10b0b
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Apr 29 18:26:21 2005 +0000
+
+    Don't test against empty string in configure.ac.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-40
+
+commit 6f1fff73bf3b74a37394b336abf50c17e50307d9
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Apr 22 18:20:42 2005 +0000
+
+    Fix #include lines in cpp/matrix.h.
+    
+    * Use mp/mpreal.h and mp/mpcomplex.h.  The bug was introduced
+      when matrix<mp_complex> support was imported from 2.1.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-89
+
+commit a77813e02122d6126846f840634fedd6a526dfc0
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Apr 22 18:16:32 2005 +0000
+
+    [merge from 2.1] Add matrix<mp_comlex> support in cpp/matrix.h.
+    
+    Patches applied:
+    
+     * yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-35
+       Cosmetic indentation fixes in cpp/matrix.h.
+    
+     * yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-37
+       Add mp_complex support in cpp/matrix.h.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-88
+
+commit 1986eeb99ca0959430830a6715b0b2c7f51dd6af
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Apr 22 18:13:46 2005 +0000
+
+    [merge from 2.1] Fix mp_complex::alloc_array bug.
+    
+     * yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-39
+       [fix] Fix mp_complex::alloc_array pointer bug.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-87
+
+commit fcd922bb3a4e3e8327dc562ac1e10ce062f37724
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Apr 22 18:05:14 2005 +0000
+
+    [fix] Fix mp_complex::alloc_array pointer bug.
+    
+    * The pointer to the data was being incremented too much.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-39
+
+commit 73a58da8dbccb774e20fd1f5d99d9ea33b08dc2c
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Apr 22 17:08:13 2005 +0000
+
+    [merge from 2.0] Add alloc_array and free_array to mp_complex.
+    
+    Patches applied:
+    
+     * yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-86
+       Add alloc_array and free_array to mpcomplex datatype.
+    
+       mpcomplex.h: Add alloc_array and free_array to mpcomplex datatype.
+         This is the analogue to the mpreal version; the double arrays
+         are allocated contiguously.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-38
+
+commit 756fb69bca678bd932bfd540c37054807bfd6f3e
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Apr 22 17:02:03 2005 +0000
+
+    Add mp_complex support in cpp/matrix.h.
+    
+    * cpp/matrix.h now has matrix<mp_complex> specialization.
+    * Make matrix<mp_real> and matrix<mp_complex> inherit from
+      mp_matrix which has the common memory allocation codes.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-37
+
+commit e9917965d5a45255d0b474b76759d1eb01c9a24f
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Apr 22 17:00:08 2005 +0000
+
+    Fix cpp/Makefile.am.
+    
+    * Some files were named with .pp extension instead of .cpp.
+    * Using spaces instead of tabs.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-36
+
+commit 97818a4264bd5493823636b345b2c553545a9428
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Apr 22 16:20:11 2005 +0000
+
+    Cosmetic indentation fixes in cpp/matrix.h.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-35
+
+commit a3b701871b2da78130250668f980cb8d1257f4c2
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Apr 22 07:07:58 2005 +0000
+
+    Add alloc_array and free_array to mpcomplex datatype.
+    
+    mpcomplex.h: Add alloc_array and free_array to mpcomplex datatype.
+      This is the analogue to the mpreal version; the double arrays
+      are allocated contiguously.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-86
+
+commit 42ce7d6bbb47fe1d3331da56ce268162e4a4511a
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 19 08:27:09 2005 +0000
+
+    Add fortran demo programs to fortran/Makefile.am.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-34
+
+commit 2c826b6fcec8c57a0946ea6aaddff9d51287aecf
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 19 08:17:57 2005 +0000
+
+    Make f90_test work.
+    
+    * Link with arprec libraries, not qd.
+    * Use C++ linker.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-33
+
+commit cd846c1968de5cfec6a4126ab08175619dac609f
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 19 08:12:09 2005 +0000
+
+    Add c_mp_test as one of the tests.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-32
+
+commit 87d85d8341f1ca7081bcffff834ae26e7152b69e
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 19 08:11:51 2005 +0000
+
+    Fix include line in cpp/c_mp_test.c.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-31
+
+commit c4818ab9ad30d9b6fb319a821a146054946b3b51
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 19 08:09:50 2005 +0000
+
+    Add other C++ demo programs.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-30
+
+commit 15747ff0f22840099759922586066f52f516ef6c
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 19 08:00:23 2005 +0000
+
+    Add toolkit/Makefile.am.
+    
+    * Added toolkit/Makefile.am with toolkit target.
+    * Remove toolkit/main.cpp and toolkit/mp_mod.f90.
+      Use fortran/libarprecmod.a for these.
+    * Appropriate chagnes in Makefile.am and configure.ac.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-29
+
+commit 45907de9a276b93404ef591a49084e072946bdac
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 19 07:38:18 2005 +0000
+
+    Detect module include flags in configure.ac.
+    
+    * For F90 compiler, detect what flags to use to include module
+      definition files.
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-28
+
+commit 8e28d9077970247e0020b21216a3d83560e2d7a6
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 19 07:26:07 2005 +0000
+
+    Rename toolkit .f files to .f90.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-27
+
+commit 23db5ff1a162b5b291d07c3d838b5c40fb4c3c72
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 19 07:23:43 2005 +0000
+
+    Added fortran/Makefile.am.
+    
+    * Added fortran/Makefile.am.
+    * Added fortran/.arch-inventory to declare libarprecmod.a as precious.
+    * Appropriate changes in Makefile.am and configure.ac.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-26
+
+commit ac84bb3e52c5876c91aa2828cfa8888f39a311fb
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 19 07:12:20 2005 +0000
+
+    Rename all .f files to .f90.
+    
+    * Allows use of automatic compilation rules in automake.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-25
+
+commit f9e7908588801798a1123f902036e2d7483a5acb
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 19 07:04:28 2005 +0000
+
+    Add include to Makefile.am.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-24
+
+commit fc87de80e711789814f9f75b3509055778b4857b
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 19 06:17:40 2005 +0000
+
+    Added include/Makefile.am.
+    
+    * Added include/Makefile.am.  Controls the header that gets installed.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-23
+
+commit f457263c0b53174e25b66d50fce7a0e399716e22
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 19 06:14:44 2005 +0000
+
+    Use include/arprec in configure.ac.
+    
+    * Update configure.ac to use include/arprec.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-22
+
+commit 09bb5fc701f6f7a945a4472f4eae09c27b85b442
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 19 06:07:47 2005 +0000
+
+    Rename include/mp to include/arprec.
+    
+    * Rename include/mp to include/arprec to avoid clash with other libraries.
+    * Appropriate changes in include statements in various C++ files.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-21
+
+commit 81ecc5f1a7ef15125a16a89128ca07abe935328f
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 19 05:57:49 2005 +0000
+
+    Added NEWS, AUTHORS, COPYING.
+    
+    * Added NEWS and AUTHORS.
+    * Renamed LICENSE to COPYING.
+    * Call automake without foreign flag.
+    * Appropriate change in README.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-20
+
+commit 27ce8c739ffcc010ff22491e4f8dcd90df0d77c1
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 19 05:51:23 2005 +0000
+
+    Added cpp/Makefile.am, corresponding changes elsewhere.
+    
+    * Added cpp/Makefile.am to build mp_test during "make check".
+    * Corresponding changes in configure.ac and Makefile.am.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-19
+
+commit fb212a249646f390796bb6121ce2cdd67af8fbf4
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 19 05:24:20 2005 +0000
+
+    Remove make.deps.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-18
+
+commit a3601f15420ac4af6ec100bda422222126e853bb
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 19 05:19:29 2005 +0000
+
+    Add src/.arch-inventory, fix {arch}/=tagging-method.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-17
+
+commit 183636a555346bc6c6b5bd9b3fb2f30a7c440eb6
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 19 05:18:04 2005 +0000
+
+    Change library name to libarprec.a.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-16
+
+commit 21ac6a391ca1179f996fa15d43e486935dbe09d2
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 19 05:17:06 2005 +0000
+
+    Add nostdinc option to AM_INIT_AUTOMAKE.
+    
+    * Avoid extraneous paths added.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-15
+
+commit 4158c43349a222b6fb972c3072ae93ace5b2b683
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 19 05:08:57 2005 +0000
+
+    Classify config.h.in and aclocal.m4 as precious in =tagging-method.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-14
+
+commit 93cee4eb6697236bc577ef105bd667ee350419c6
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 19 05:00:30 2005 +0000
+
+    Cleanup some old files, fix {arch}/=tagging-method.
+    
+    * Removed lib dir.
+    * Removed various Makfiles.
+    * Removed make.inc.in.
+    * Updated {arch}/=tagging-method to classify various
+      intermediate files as precious.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-13
+
+commit 3a5683613d8226545905d3945e8019587fe001c7
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 19 04:46:11 2005 +0000
+
+    Update various config files, add src/Makefile to configure.ac.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-12
+
+commit c56dcb2b2b4205aab759c054b9ed43decbb62219
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 19 04:37:51 2005 +0000
+
+    Call automake with --foreign flag.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-11
+
+commit 0f937b1748b15daa8d2df109d066789af044752a
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Apr 19 04:29:02 2005 +0000
+
+    First attempt at using automake.
+    
+    * configure.ac: use AM_* macros, output Makefile.
+    * Added Makefile.am, src/Makefile.am.
+    * Removed Makefile, src/Makefile.
+    * config/autogen.sh: call automake.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-10
+
+commit 745415a7699a589dfa87d17d405f5f0030948473
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Apr 18 18:55:59 2005 +0000
+
+    Use ARPREC_PATCHLEVEL in configure.ac.
+    
+    * Use ARPREC_PATCHLEVEL in configure.ac instead of @@devel@@.
+    * Appropriate changes in config/makedist.sh
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-9
+
+commit a7bf177c12d8b4cccd3d76f89e2043936edf0d72
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Mar 29 21:42:39 2005 +0000
+
+    Merge several fixes from 2.0 branch (patches 83, 84, 85).
+    
+    Patches applied:
+    
+     * yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-83
+       Add -qnoescape for IBM xlC compilers.
+    
+     * yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-84
+       Incorporate dhb README changes.
+    
+     * yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-85
+       Fix c_mpaint bug.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-8
+
+commit 2e4f12c6001731b7e9cce772cc7f2dc51fa7d0d5
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Mar 29 21:40:04 2005 +0000
+
+    Add option to config/makedist.sh to accept version string.
+    
+    Patches applied:
+    
+     * yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-82
+       Add option to config/makedist.sh to accept version string.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-7
+
+commit 1c39b6360e556a84a27ad702c07625a5d2c7e055
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Mar 29 19:41:28 2005 +0000
+
+    Fix c_mpaint bug.
+    
+    * Fix c_mpaint bug.
+      The last two arguments to call of mp::mpinfr was reversed.
+      Now f90_test should run without segfault.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-85
+
+commit 1965786a55db7780b00b45ce2c3c10218ac2a40e
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Mar 29 19:16:57 2005 +0000
+
+    Incorporate dhb README changes.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-84
+
+commit 4e9bdb7f5980bab5ac6fa156fab35c187078aff4
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Mar 29 19:07:59 2005 +0000
+
+    Add -qnoescape for IBM xlC compilers.
+    
+    * This is required to compile mathtool.f.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-83
+
+commit b42be4e2613a4f43a513992d0ee5d495d32bdb97
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Mar 29 18:59:56 2005 +0000
+
+    Add option to config/makedist.sh to accept version string.
+    
+    * Add option to config/makedist.sh to accept version string.
+      This allows temporary distribusion such as "2.0.82-pre1".
+      Defaults to the last patch level returned by tla logs.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-82
+
+commit 3a5ad5bc692ccd11634ca414bc86b3d1e25f91f0
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Mar 26 12:05:14 2005 +0000
+
+    Add --enable-qd configure flag and ARPREC_QD #define.
+    
+    * Add --enable-qd configure flag in configure.ac.
+    * Add ARPREC_QD #define in config.h and include/mp/arprec_config.h.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-6
+
+commit f80ec8796dcaa8502ec27173b5d1eade0b88c626
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Mar 26 11:35:09 2005 +0000
+
+    Rename f90 directory to fortran.
+    
+    * Renamed f90 directory to fortran.
+    * Appropriate changes in Makefile and configure.ac.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-5
+
+commit fcd01d5795ba488b8e6d382e950a22f66a2e0209
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Mar 26 11:24:56 2005 +0000
+
+    Update cpp/mp_test to return bool results.
+    
+    Patches applied:
+    
+     * yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-4
+       Update cpp/mp_test to return bool results.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-81
+
+commit 773dce72ac6e9fed2cb5b6f4022109567a08b114
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Mar 26 11:17:52 2005 +0000
+
+    Update cpp/mp_test to return bool results.
+    
+    * Each test in cpp/mp_test now returns a bool result.
+      These are AND-ed together for the final result, and
+      appropriate exit status is returned.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-4
+
+commit 69f87ba563c8f958d51f3c883f935e39e4d312a0
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Mar 26 11:08:40 2005 +0000
+
+    Rename include files (e.g., mpreal.h to mp_real.h).
+    
+    * Rename top-level include file to be consistent with the
+      variable types: mp_real mp_int mp_complex.
+    * Appropriate changes in #include statements.
+    * Appropriate changes in make.deps.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-3
+
+commit 2b42186620e2a6dbd208e544db800929a8d73f16
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Mar 26 11:04:39 2005 +0000
+
+    Clean up .PHONY target in Makefile.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-80
+
+commit 26e60513291aded079206628acde7064b01e5056
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Mar 26 11:00:22 2005 +0000
+
+    Add check and dummy install target to Makefile.
+    
+    * check target runs cpp/mp_test and f90/roots.
+    * install target just prints out a message that installation
+      needs to be manually done (to be fixed in 2.1.x series).
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-79
+
+commit 0b4f715dd7ff6dd73c9a9e48cffc75c23c1fdf8a
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Mar 26 10:28:48 2005 +0000
+
+    Minor cleanup to main Makefile.
+    
+    * Use shell && notation to execute a series of commands.
+    * Don't use subshell unless necessary.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-78
+
+commit 38698c0d1ae7d7854bdcfb485fd606e8dc2738b4
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Mar 20 11:10:57 2005 +0000
+
+    Clean up #includes in src/*.cpp.
+    
+    * Use <xxx> instead of "xxx" for headers that will be installed.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-77
+
+commit 56bf7940075378b218b7396b3e426fb0b43808d7
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sun Mar 20 11:03:57 2005 +0000
+
+    Bump version number to 2.1.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.1--patch-1
+
+commit 105546a9825fbc04692c42f0de3fc64da520ae3e
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Mar 19 20:47:13 2005 +0000
+
+    Fix call to pow(double, double).
+    
+    * Was using pow(duoble, int) which conflicts with
+      pow(qd_real &, int) when qd/qd.h was included.
+      Discovered while trying to check qd with arprec.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-76
+
+commit 61042fda6872fe720a10b3bc361e104f1e806f17
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Mar 12 02:01:00 2005 +0000
+
+    Add using std::abs to cpp/pslq1_templates.cpp.
+    
+    * Added using std::abs to cpp/pslq1_templates.cpp.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-75
+
+commit 4b56579ba144f70d94cf448abe0b73214aa6c0b6
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Mar 12 01:50:19 2005 +0000
+
+    Fix src/Makefile clean target.
+    
+    * Move -f flag after the file names.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-74
+
+commit d2e5f611a8c4dffc04313e1b9675967e7f628fb9
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Mar 12 01:47:40 2005 +0000
+
+    Change C++ compiler search order.
+    
+    * Search generic names like CC towards the end.
+      Enables use of xlC compiler before CC on Apple systems,
+      for example.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-73
+
+commit 74c587593ae1198106226ce86c2073a6e643ae67
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Mar 7 11:06:26 2005 +0000
+
+    Update TODO.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-72
+
+commit 64b820411768513dd2ae33dca5d2e6e6c1382aec
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Mar 2 17:16:48 2005 +0000
+
+    Add a blurb about --enable-fma.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-71
+
+commit 94a2991ccc5f16c8449b32f2e73c58fac0508f74
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Mar 2 17:04:24 2005 +0000
+
+    Update README and INSTALL.
+    
+    * README: revision date update and minor changes.
+    * INSTALL: add plotform specific notes.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-70
+
+commit eb4b8120d9b69f4efe6d245bed72ad973a51ac49
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Mar 2 10:08:27 2005 +0000
+
+    Update TODO.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-69
+
+commit 4923a654727b24485739aab7c2614b3b2cb0ec96
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Mar 2 09:55:58 2005 +0000
+
+    Update TODO.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-68
+
+commit da61d59574af16d5cd1aba3e35df4d1015b33d52
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Mar 2 09:32:35 2005 +0000
+
+    Remove untemplated print functions from pslq1.h.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-67
+
+commit 8193c4a403dfd67ff5dc05d320930b9a2ff19c7e
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Mar 2 09:15:12 2005 +0000
+
+    Fix gcc-3.4.x compilation problems.
+    
+    * Declare template <class T> void print(const T &x) in matrix.h.
+    * Explicitly mension matrix_base<T>::elements.
+    * Use print<mp_real> in various pslq codes.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-66
+
+commit 91930ab29e4a78770edff8979a4731e1a96b0719
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Feb 28 09:44:46 2005 +0000
+
+    Add mplib as prereq for f90 in Makefile.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-65
+
+commit 33fd803db95936bf60de1e4ffab8a28a1dd6247a
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Feb 28 09:24:48 2005 +0000
+
+    Add TODO file.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-64
+
+commit 0d0a836c2fbf0f1a2c648f48cf7cc5abbd7a5c29
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Feb 28 09:13:24 2005 +0000
+
+    Add simple operator<< test in cpp/mp_ex.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-63
+
+commit 32541e25e7fdfaf9f70383cd0027855fcf3c9cac
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Feb 28 09:08:39 2005 +0000
+
+    Add operator<< with mp_real_temp.
+    
+    * include/mp/mpreal.h: operator<<(ostream &s, const mp_real_temp &x)
+      added.  For some reason IBM AIX xlC compiler version 6.0 does not
+      automatically promote mp_real_tmp to mp_real when operator<< is
+      called.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-62
+
+commit 7dab79165ab20a9ec5a97f0a8953694a9691bd81
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Feb 24 10:36:51 2005 +0000
+
+    Get rid of some g++ warnings in C++ code in cpp/.
+    
+    * Make some destructors virtual.
+    * Remove /* inside C comments.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-61
+
+commit 7e36d88606ceb0b4575cb35aacffe932a628226b
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Feb 24 02:32:23 2005 +0000
+
+    Change f95 search order.
+    
+    * Move xlf95 before f95, few other changes.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-60
+
+commit a326cb20bf1125246debca5894d20a7fda08e4a7
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Feb 24 02:22:20 2005 +0000
+
+    Use $CXXFLAGS instead of $(CXXFLAGS) in configure.ac.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-59
+
+commit 0171762e0b7524d87d2ad46e9b1804710fc8c802
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Feb 24 02:16:26 2005 +0000
+
+    Fix the -lompstubs check for Sun f95/f90.
+    
+    * First use _AC_FC_DUMMY_MAIN; if it fails add -lompstubs to
+      FCLIBS and use AC_FC_DUMMY_MAIN.  Cached value for this test
+      needs to be thrown out in between.
+    
+    * Minor fix: use x$var != x tests.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-58
+
+commit f91903710a996c23c93359e3f02edc257aec27f7
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 22:38:35 2005 +0000
+
+    Add -lompstubs check for Sun f95/CC combo in configure.ac.
+    
+    * f95/CC combo on Sun requires -lompstubs to link Fortran object
+      files with CC as linker.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-57
+
+commit fc67eea4d60e1950787850a3be3c8fe6a1d3af81
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 11:25:05 2005 +0000
+
+    Remove unused var warning from g++ in src/mpreal_friends.cpp.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-56
+
+commit 9f14183cc0a4f27818922ea75d67e33ca881571b
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 11:22:29 2005 +0000
+
+    Check for g++ instead of gcc.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-55
+
+commit 7a5cffb450ab46e071d5bdaf935b79be32df4bf3
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 11:09:13 2005 +0000
+
+    Update make.deps, some INC vars in Makfiles.
+    
+    * Use g++ for generating make.deps.
+    * Regenerate make.deps.
+    * Use more *INC variables in Makefiles.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-54
+
+commit 88b49a0a1428c8080d947912d9f4613532b14f4b
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 11:02:00 2005 +0000
+
+    "make dist" no longer runs maintainerclean.
+    
+    * "make dist" copies the dir first, then run clean target.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-53
+
+commit b3ee3f0fa2685285f3b152563b07533479822d0d
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 10:58:15 2005 +0000
+
+    Save dist file in original directory.
+    
+    * Save dist file (made by "make dist") in the original directory.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-52
+
+commit 65656afddab342e594fdae1624c67a5c172357cc
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 10:55:19 2005 +0000
+
+    Set version in configure.ac to @@devel@@, modified by config/makedist.sh.
+    
+    * Version in configure.ac set to 2.0.@@devel@@.
+    * @@devel@@ is substituted to tla patch level by config/makedist.sh
+      during "make dist".
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-51
+
+commit e439a7c4b1a47ad3725766f3718e085df1f0d57e
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 10:45:07 2005 +0000
+
+    Bump version number in configure.ac to 2.0.50.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-50
+
+commit 493669cd609263e86cb913341ec10e22211c8e7c
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 10:42:23 2005 +0000
+
+    Add check for sys/timer.h.
+    
+    * Add check for sys/timer.h.
+    * If sys/timer.h not found, use time() in <ctime>.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-49
+
+commit a7bf80c0b9ebeb4d17ac507a5daf78e52aa1c4fd
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 10:35:22 2005 +0000
+
+    Add check for copysign.
+    
+    * If copysign not found, use custom #define.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-48
+
+commit a90aacfc7ff5714dc5f52cffa99a90f69e46ba47
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 10:26:41 2005 +0000
+
+    Change library name to arprec.
+    
+    * "libmp" conflicts with some existing library.
+    * General clean up of various Makefiles.
+    * Update {arch}/=tagging-method to include libarprec.a.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-47
+
+commit 081d06a4bf308e331ad0a7c49003f837d23a5028
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 10:00:19 2005 +0000
+
+    Use <cfloat> instead of <values.h>, few header cleanups.
+    
+    * Use cfloat instead of values.h.
+    * Minor header cleanups.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-46
+
+commit 2c09a6db82c77b9ba11a917cd18e24edbc0ba12e
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 09:51:21 2005 +0000
+
+    Update README according to 2005-02-21 dhb tarball.
+    
+    * LICENSE and INSTALL still split from README.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-45
+
+commit 28d2459561c39455b24894e8be31bb9c254e646e
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 09:31:34 2005 +0000
+
+    Make ChangeLog in config/makedist.sh.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-44
+
+commit 20a62348091a3a596ebf6c847ae8a34c5b5b2c46
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 09:28:51 2005 +0000
+
+    Use f_ prefix instead of f77_ prefix in toolkit/mp_mod.f.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-43
+
+commit 02202ed3ed87fc0ab6d9801daf55fc3862f93e6d
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 09:27:02 2005 +0000
+
+    Fixup {arch}/=tagging-method.
+    
+    * Add quads as junk.
+    * Escape . where appropriate.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-42
+
+commit 25db3fd770a87b98b8a46b003f105a396c851c5c
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 09:25:16 2005 +0000
+
+    Fix cpp/quads compilation.
+    
+    * Added util.cpp and util.h (modified to include c_mp.h).
+    * Modified *.cpp files to include *.cpp files (instead of *.cc files).
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-41
+
+commit a115ff75b5602008eb8dbb207a3a23214aeeddf1
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 09:16:10 2005 +0000
+
+    Rename remaining .cc files to .cpp.
+    
+    * New cpp/*.cc files renamed to *.cpp.
+      The cc extension causes problems with some compilers
+      (including MSVC++).
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-40
+
+commit 1dd6231726ad075aa78ce82ef807679af99b14d2
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 09:10:14 2005 +0000
+
+    Add mp_modx to the generated f90 module list.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-39
+
+commit e3eabc515fe3d9fd035dee15bad76af4ee6e46c4
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 09:08:21 2005 +0000
+
+    Add f90_test to the f90/Makefile remove target.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-38
+
+commit ecd06139fce538c914a7a7a0916d2e398b8964bb
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 09:06:06 2005 +0000
+
+    Bump the version number to 37.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-37
+
+commit fc6e42934c5a817f6dfebbc5c4307999bb757bfe
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 08:58:32 2005 +0000
+
+    Change f77_ prefix to f_ prefix.
+    
+    * Rename f77_mp.cpp to f_mp.cpp.
+    * Change f77_ prefix to f_ prefix in module files, Makefiles, and f_mp.cpp.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-36
+
+commit cda8d96491af0419189ea5ece69c1c70516edd8d
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 08:52:20 2005 +0000
+
+    Add -wd1572 flag to icpc too.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-35
+
+commit 4cb09a452cc349ecb9d7b3ef9ac62c928bf21d66
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 08:51:37 2005 +0000
+
+    Remove F77 autoconf stuff, use FC instead.
+    
+    * Remove F77 autoconf stuff, use FC stuff.
+    * Use FC_FUNC_ instead of F77_FUNC_ in f77_mp.cpp.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-34
+
+commit 5d2e10082254115410e0c364877311a2b8e7e2d9
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 08:27:27 2005 +0000
+
+    Bug fix in Makefile: maintainer-clean should be maintainerclean.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-33
+
+commit a4fbf94d1da4329af6b3a988190dfa7235bb2bc0
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 08:23:59 2005 +0000
+
+    Minor cleanup in Makefile.
+    
+    * Use distclean and maintainerclean instead of dist-clean and
+      maintainer-clean.  Conforms to automake generated rules.
+    * Use f90 as default fortran wrapper.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-32
+
+commit 4c190ecba041a188d4825d1a25a2de334054849c
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 08:19:03 2005 +0000
+
+    More through test for etime on Intel compiler.
+    
+    * Require autoconf-2.59.
+    * Check none and -lPEPCF90 for etime.
+    * Fail if etime can't be found.
+    * Needs more testing with older icc compilers.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-31
+
+commit 70e6c4b50823a56297e39e356e37d62074d63b0d
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 07:43:54 2005 +0000
+
+    Add icpc to C++ compiler list.
+    
+    * icpc is the Intel C++ compiler.
+      By default links with C++ libraries (icc doesn't).
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-30
+
+commit a31fc9e7c63358bda2e15f09aad59fa943e8d9d8
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 07:39:21 2005 +0000
+
+    Add LDFLAGS substitution.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-29
+
+commit 0a8f8d21122e955b87437cb77a7833662933034e
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 05:40:43 2005 +0000
+
+    Add -wd1572 to icc flags to disable warning about floating point.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-28
+
+commit df33de65ef7e7380ff87498c80eb481bd4fd858f
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 04:32:09 2005 +0000
+
+    Merge changes from 2005-02-21 dhb tarball.
+    
+    * Except README changes.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-27
+
+commit 50c3387211aeb467e96cffc6db93662a05ef0bec
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 04:21:05 2005 +0000
+
+    Merge toolkit changes from 2004-08-14 dhb tarball.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-26
+
+commit 8409473c199ae8a0cc7078fc1171f6d0f7625973
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 04:06:30 2005 +0000
+
+    Merge in src changes from 2004-08-12 dhb tarball, ugly fixes.
+    
+    * Use ARPREC_API for new C APIs.
+    * Regenerate src/make.dep.
+    * Files added: include/mp/mputil.h, src/mpreal_friends.cpp, src/mputil.cpp.
+    * As temporary fix, include c_mp.h in mpreal_friends.cpp and mputil.cpp.
+      This should be eventually removed; C++ code should only use C++ APIs
+    	if possible.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-25
+
+commit 6cd7131834d46b1d38b3c3809c8add23d66f06ff
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 03:24:32 2005 +0000
+
+    Update f90 files (from 2004-08-12 dhb).
+    
+    * Update f90 files (from 2004-08-12 dhb).
+    * Resolved few conflicts related to using "subroutine f_main"
+      instead of "program".
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-24
+
+commit 94a904f088f64dc50ea7fa4382efc9ce5b734965
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 03:13:53 2005 +0000
+
+    Update Makefile (from 2004-08-12 dhb).
+    
+    * Minor update.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-23
+
+commit 51d647991f5a5618cca6292e8cf2a8dc2a3c7940
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 03:10:59 2005 +0000
+
+    Update cpp/Makefile.
+    
+    * Updated cpp/Makefile.
+    * Still some problems with the new C++ codes.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-22
+
+commit e91a63bf0ed7e5fe35b5caec0e99e61b9abb167d
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Feb 23 02:59:25 2005 +0000
+
+    Add new files to cpp dir (from 2004-08-12 dhb tarball).
+    
+    * Add new files to cpp dir.
+    * Does not include new cpp/Makefile yet.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-21
+
+commit be414621d4885d13b5a076c4aca05147fadeb5dc
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Aug 16 21:29:09 2004 +0000
+
+    Rename examples to cpp.
+    
+    * Rename examples directory to cpp.
+    * Update top level Makefile accordingly.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-20
+
+commit f52cd9c2cf03213ba941b8409286cd57088619ba
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Aug 16 21:27:53 2004 +0000
+
+    Merge example changes by Karthik Jeyabalan.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-19
+
+commit 4883f3cbcc9d3c73b5090ad42c8e18063b8a0182
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Feb 10 18:04:03 2004 +0000
+
+    Add option to fix fpu whenever C interface is called.
+    
+    * Added code to fix FPU whenever C interface is called.
+    * Added option in configure.ac to enable this code.
+    * Needed for loading windll from lisp.
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-18
+
+commit 6955d7e63ea72ddecf495af713e5dc9c27172ee6
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Feb 10 17:02:29 2004 +0000
+
+    Postpone fpu fix until mpinit is explicitly called.
+    
+    * Postpone fpu fix until mpinit is explicitly called.
+    * This is a workaround for a bug when windll is loaded from lisp.
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-17
+
+commit 921d86704d703672fa5386fabcb708fb2204e4d8
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Tue Feb 10 04:26:17 2004 +0000
+
+    Unify permissions of files to 0644/0755.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.2--patch-21
+
+commit 5a8c8c5b24ec35759a43079fc0b5acd3b84031b5
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Feb 9 23:54:18 2004 +0000
+
+    Update toolkit programs to use main.cpp.
+    
+    * Add toolkit/main.cpp.
+    * Use C++ compiler to link, change Fortran program
+      names to f_main.
+    * Update {arch}/=tagging-method to exclude const.dat,
+      mathinit, and mathtool.
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-15
+
+commit bc45369bbeacc05fd28b1efa38ace7bb471f7ee0
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Feb 9 22:28:27 2004 +0000
+
+    Update version info in configure.ac.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-14
+
+commit 64e18207e6c88a36da52943557ba670a797ac32e
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Feb 9 22:24:34 2004 +0000
+
+    Merge changes from dhb, some conflicts resolved.
+    
+    * Mostly changes in README, etc.
+    * Add toolkit target in Makefile.
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-13
+
+commit e01961783d20c3951036b17c8d21d113373c18d7
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Feb 9 22:11:44 2004 +0000
+
+    Merge dhb changes.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-12
+
+commit bd868f811812978de1deecf18b5c91f74d82d3ef
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Feb 9 22:11:03 2004 +0000
+
+    Remove aclocal.m4 and config.h.in during maintainer-clean.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-11
+
+commit 8f44bdc5732dc363ed201cb9f3daf7e43e2f430a
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jan 31 09:22:46 2004 +0000
+
+    Update dist target in Makefile.
+    
+    * Added config/makedist.sh to make a distribution tarball.
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-10
+
+commit 691acdd9b0ec537c871537aea0b5c95edd7af88a
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jan 31 08:43:58 2004 +0000
+
+    Add f90/main.cpp.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-9
+
+commit bef968a945578d4b8dee6ac594d3db06f804692a
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jan 31 08:43:42 2004 +0000
+
+    Update =tagging-method.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-8
+
+commit b97b2345a76553119b57c87aa4b0fcbd0d993f12
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jan 31 08:43:07 2004 +0000
+
+    Update f90 programs.
+    
+    * Use main.cpp as main entry point.
+    * Update program xxx to subroutine f_main so they
+      can be called from main.cpp.
+    * Update f90/Makefile.
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-7
+
+commit dbbd4fe4bd3cf6182dc1f1d3a71f9f05657bdb60
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jan 31 08:41:25 2004 +0000
+
+    Update configure.ac for etime, version.
+    
+    * Use ETIME_ instead of ETIME on IBM xlf compiler.
+    * Updated version number.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-6
+
+commit 041212af22248cfa958a204dc4537b23adae8513
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jan 31 06:00:06 2004 +0000
+
+    Add acinclude.m4.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-5
+
+commit ab5468dd0c33f292c9451e68d1acac53cbd1f8b3
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jan 31 05:42:47 2004 +0000
+
+    Classify aclocal.m4 as precious.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-4
+
+commit 795dca5fa169ae37ba38d5da6b9ba2d30bfcb367
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jan 31 05:41:37 2004 +0000
+
+    Remove aclocal.m4.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-3
+
+commit e5041c89b0479151ad0685f87fe487d7313e651a
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jan 31 05:17:50 2004 +0000
+
+    Add tquadts_omp.f.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-2
+
+commit e887eeb5aef2f44989970ec9dab0ea39671d2b35
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jan 31 05:17:24 2004 +0000
+
+    Merge Sherry's changes (for parallel arprec).
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--2.0--patch-1
+
+commit e92b134d031dbf8f6866e0869336e4423cb9bdf5
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jan 31 02:08:01 2004 +0000
+
+    Add ARPREC_API to input/output operator.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.2--patch-20
+
+commit 3a63345b1333a975bccdd1119888dccb58285698
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Jan 30 23:59:27 2004 +0000
+
+    Clean up few C interface routines.
+    
+    * For c_get* routines, return the value instead of
+      writing to a int * pointer.
+    * For c_set* routines, use pass-by-value.
+    * Update f77_* routines accordingly.
+    * Update c_mp_test.c.
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.2--patch-19
+
+commit 8ac95ea64213b80ba67ef8891b0c7707e97f8af5
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Jan 30 23:53:26 2004 +0000
+
+    Add c_mpfree routine.
+    
+    * Frees memory created by c_mpnew / c_mpnew_x.
+    * Fixes memory faults in DLL compiled with MSVC.
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.2--patch-18
+
+commit ee229532996143a300368282282fb921a935696f
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Jan 30 23:18:50 2004 +0000
+
+    Add ARPREC_API macro.
+    
+    * Add ARPREC_API macro to all the routine that
+      needs to be exported.
+    * Configure script just outputs empty string.
+    * This allows MSVC to build DLLs.
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.2--patch-17
+
+commit 958cb9cb2960118e1d90cb67ef72883ec41c0b17
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Jan 30 22:57:49 2004 +0000
+
+    Added c_mp_test.c test program.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.2--patch-16
+
+commit 28ae20c7ee0f22011f7bd880a42f48bca2f210fc
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Jan 30 22:53:58 2004 +0000
+
+    Update C interface to be useful.
+    
+    * Added following routines
+        c_mpeq_str (assign from scring)
+        c_mppi (assign pi)
+        c_mpnew (create new mpreal)
+        c_mpwrite (write to string)
+        c_mpinit_x (expert init)
+    * Update c_mpout to write to stdout.
+    * Update c_mpinit to accept only number of digits to use.
+      Other parameters can be passed through c_mpinit_x.
+    * Update f77_mpinit to use the old c_mpinit code.
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.2--patch-15
+
+commit 3447a7af9b7fd2a3345217d79d048c945415f055
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Jan 30 22:53:08 2004 +0000
+
+    Dont include c_mp.h inside mpreal.h.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.2--patch-14
+
+commit 02152a6a4f10f3bd96df2194c56e8948ab75b6fc
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Jan 30 22:48:51 2004 +0000
+
+    Update make.deps
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.2--patch-13
+
+commit bd5de03baa236792ae77f2029fc341bebec20b2e
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Fri Jan 30 21:33:14 2004 +0000
+
+    Fix extraneous declaration of operator<<.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.2--patch-12
+
+commit a7448bfb248e3a709439f53db820de0a9cfdf78f
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Jan 26 23:14:33 2004 +0000
+
+    Fix include statements.
+    
+    * Fix include statements to include <mp/xxx.h> instead of "xxx.h".
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.2--patch-11
+
+commit bbcfa9ab29d4a13fdc0c42b18c392fd58c85fedc
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Jan 26 23:01:31 2004 +0000
+
+    Small fix in Makefile.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.2--patch-10
+
+commit 11b7964e6a7f97a76593ea0e6145830ea128bfc1
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Jan 26 22:58:36 2004 +0000
+
+    Added ifndef guards in arprec_config.h.in.
+    
+    * Added ifndef guards in arprec_config.h.in.
+    * Removed extra define of ARPREC_DEBUG in mp/mpreal.h.
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.2--patch-9
+
+commit ead8f8348fa35076c31382497af4e714773f93db
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Mon Jan 26 22:19:11 2004 +0000
+
+    Set enable_fortran in configure.ac.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.2--patch-8
+
+commit 594db03cd2be140c8796c717e9a6925f49b53b54
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jan 3 10:31:01 2004 +0000
+
+    Added --enable-debug option.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.2--patch-7
+
+commit 1ec8b6483d1fabf29e77282b626b2cbc1f17b654
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jan 3 10:26:37 2004 +0000
+
+    Fix configure script summary printout.
+    
+    * Print out whether fortran was enabled.
+    * Print out whether debugging code was enabled.
+    * Only print out fortran flags if fortran is enabled.
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.2--patch-6
+
+commit 2f86759df3c1afe3012eacbadca9161dc7d6651e
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jan 3 10:18:56 2004 +0000
+
+    Use C++ headers instead of C headers.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.2--patch-5
+
+commit 3804448e95b6a9f855df5392ee1e8cbe49aab6e2
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jan 3 10:04:30 2004 +0000
+
+    Fix Fortran section of configure.ac.
+    
+    * Update version number.
+    * Detect more fortran compilers such as ifort.
+    * Use FC instead of F90.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.2--patch-4
+
+commit 1b840ccc098cf98cea1fc61a8240622289e582c4
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jan 3 09:50:29 2004 +0000
+
+    Classify config.h.in as precious.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.2--patch-3
+
+commit 1f5fa807affbb1b3215c57a555ec76cdd3daabba
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jan 3 09:49:12 2004 +0000
+
+    Cleaned up configure.ac and others.
+    
+    * Use AC_DEFINE instead of AC_SUBST for arprec_config.h stuff.
+    * Remove check for std C++ header files.
+    * Auto-generate config.h.in.
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.2--patch-2
+
+commit 05cf8aaf1ee54fcbff7810d3ee5834b03f805efe
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jan 3 07:42:19 2004 +0000
+
+    Use fma only if requested.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.2--patch-1
+
+commit 9fabc217796c53085625444b5d465303d7f9d16d
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jan 3 07:32:49 2004 +0000
+
+    Set up C++ compiler flags correctly in configure.ac.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.1--patch-8
+
+commit 9128bfee3564c57e654bbb53d09ba488808b32be
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jan 3 07:16:51 2004 +0000
+
+    Refer to the file INSTALL from README.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.1--patch-7
+
+commit 1acec49c6e6f360574895487576f926091d31df1
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jan 3 07:16:16 2004 +0000
+
+    Move installation instructions to INSTALL.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.1--patch-6
+
+commit cff85cb58aa2799d19822e2d5e90fe14a739460f
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jan 3 07:14:50 2004 +0000
+
+    Classify example program names as junk.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.1--patch-5
+
+commit 3fd06bef98ec4da52f0becb0f6ec898bd2a9c253
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jan 3 07:12:44 2004 +0000
+
+    Update configure.ac.
+    
+    * Check arguments to configure early in the script.
+    * Various fixes.
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.1--patch-4
+
+commit d4a1bc47329953c919eafd9014ba42fe573a0955
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jan 3 06:43:28 2004 +0000
+
+    Move license information to LICENSE.
+    
+    * Move license information to LICENSE file, and refer
+      to it from README.
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.1--patch-3
+
+commit 7e32eecb1d530f996b4c4902ef7213b2330022ea
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jan 3 06:40:13 2004 +0000
+
+    Fix of overflow in mpreal::mpexp for large argument.
+    
+    * Incorporated Brandon's fix for this problem.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.1--patch-2
+
+commit 1e79a7288ca4e8cd1d54f244b9851ffe25b2bcf4
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Sat Jan 3 06:33:20 2004 +0000
+
+    Moved autogen.sh into config directory.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.1--patch-1
+
+commit 6db9852d4cf83df18fdc3ebb1e4c0955bc93a5a7
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Dec 17 05:49:56 2003 +0000
+
+    Fixed operator<< bug.
+    
+    * operator<< now skips white spaces.
+    * operator<< sets fail flag when unable to read.
+    * Code cleanup in operator<<.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.0--patch-9
+
+commit d5ec6b5017264b0cd4e4907f8e4770bf2aea93a0
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Wed Dec 17 05:46:39 2003 +0000
+
+    Cleanup.
+    
+    * Classified generated files as junk / precious in {arch}/=tagging-method.
+    * Modified autogen.sh to provide output.
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.0--patch-8
+
+commit 2807b7687cb71b329a709e5d4457c32869dbf6ea
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Nov 27 08:43:56 2003 +0000
+
+    Use fabs instead of abs.
+    
+    VC++ compiler does not seem to have abs() in std:: namespace.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.0--patch-7
+
+commit c4476c66efe750a016a7e81c7353410ff75c8c7d
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Nov 27 07:59:07 2003 +0000
+
+    Remove extraneous casts.
+    
+    This was causing problems with VC++ compiler.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.0--patch-6
+
+commit 602dcf07f43270efe7887f1b7f4f8fed7391a0df
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Nov 27 07:40:04 2003 +0000
+
+    Added checks for fpu_control.h
+    
+    Added configure checks for fpu_control.h, modified fpu.cc accordingly.
+    Also moved the check for x86 fix to later place in configure.ac.
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.0--patch-5
+
+commit 4d38722a83511d5d95104713c2fe7fe9e6f564cd
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Nov 27 07:22:22 2003 +0000
+
+    Made configure script print out the result of x86 fix test.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.0--patch-4
+
+commit 613e6818aab5155e5f3ae8b50133dca414ffdac7
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Nov 27 07:03:53 2003 +0000
+
+    Added arprec_drand48 to deal with systems without drand48 function.
+    
+    Internal function arprec_drand48 now uses either drand48 or rand
+    to create a random double.  Configure scripts is modified to detect
+    drand48 function, and sets HAVE_DRAND48 in config.h accordingly.
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.0--patch-3
+
+commit 1e2a0bad970ae0539fff7c21d1eb4f9e74693f6f
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Nov 27 05:41:30 2003 +0000
+
+    Changed .cc extension to .cpp.
+    
+    Changed .cc extension to .cpp to be compatible with
+    some compilers (such as VC++).
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.0--patch-2
+
+commit 24be9d6546d2a91a5382b65a3ac75e8b6a83a74f
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Nov 27 05:09:30 2003 +0000
+
+    Initial import of arprec sources.
+    
+    
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.0--patch-1
+
+commit 1cd98580d1bfce155cfceb243678f2351281ee6d
+Author: Yozo Hida <yozo@cs.berkeley.edu>
+Date:   Thu Nov 27 05:08:39 2003 +0000
+
+    initial import
+    
+    
+    (automatically generated log message)
+    git-archimport-id: yozo@cs.berkeley.edu--arprec/arprec--mainline--1.0--base-0

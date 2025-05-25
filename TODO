@@ -1,0 +1,16 @@
+* General cleanup.
+* Add ldexp, use it in pslq codes.
+* Add ceil, floor.
+* Sun CC compiler: should we add -erroff=wvarhidemem flag to disable 
+  variable shadow warning?  Or should we eliminate variable shadowing?
+* Make it more consistent with standard math library.
+* Should we use <complex> ?
+* erfc now uses C++, but rather ugly, clean it.
+* More efficient mp_real + double ?
+* More consistent dispatch of high/low precision routines.
+* Use static_cast instead of C-style cast.
+* Check for int32_t, and use it instead of generic integer.
+* Better handling of error conditions.
+* Sign function?  Maybe use copysign.
+* Documentation.
+* Thread safety.

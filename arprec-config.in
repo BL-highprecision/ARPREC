@@ -1,0 +1,90 @@
+#!/bin/sh
+# @configure_input@
+prefix="@prefix@"
+exec_prefix="@exec_prefix@"
+includedir="@includedir@"
+libdir="@libdir@"
+bindir="@bindir@"
+datadir="@datarootdir@"
+mandir="@mandir@"
+sysconfdir="@sysconfdir@"
+sharedstatedir="@sharedstatedir@"
+
+CXX="@CXX@"
+CXXFLAGS="-I$includedir @CONFIG_CXXFLAGS@"
+LIBS="-L$libdir -larprec @LIBS@"
+
+FC="@FC@"
+FCLIBS="-L$libdir -larprecmod -larprec @LIBS@ @FCLIBS@"
+FCFLAGS="@CONFIG_FCFLAGS@"
+MODINC="@ax_f90_modflag@$libdir/arprec"
+FMAINLIB="-L$libdir -larprec_f_main"
+
+configure_args="@CONFIGURE_ARGS@"
+usage()
+{
+  cat <<EOF
+Usage: arprec-config [OPTIONS]
+Options:
+    [--prefix]
+    [--exec-prefix]
+    [--version]
+    [--libs]
+    [--fc]
+    [--fclibs]
+    [--fcflags]
+    [--fmainlib]
+    [--cxx]
+    [--cxxflags]
+    [--configure-args]
+EOF
+  exit $1
+}
+
+while test $# -gt 0; do
+  case "$1" in
+  -*=*) optarg=`echo "$1" | sed 's/[-_a-zA-Z0-9]*=//'` ;;
+  *) optarg= ;;
+  esac
+
+  case $1 in
+    --prefix)
+      echo $prefix
+      ;;
+    --exec-prefix)
+      echo $exec_prefix
+      ;;
+    --version)
+      echo @VERSION@
+      ;;
+    --libs)
+      echo $LIBS
+      ;;
+    --cxx)
+      echo $CXX
+      ;;
+    --configure-args)
+      echo $configure_args
+      ;;
+    --fclibs)
+      echo $FCLIBS
+      ;;
+    --fcflags)
+      echo "$MODINC $FCFLAGS"
+      ;;
+    --fmainlib)
+      echo "$FMAINLIB"
+      ;;
+    --cxxflags)
+      echo $CXXFLAGS
+      ;;
+    --fc)
+      echo $FC
+      ;;
+    *)
+      usage 1 1>&2
+      ;;
+  esac
+  shift
+done
+
